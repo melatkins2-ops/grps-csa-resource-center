@@ -14,9 +14,9 @@ class Element {
   focus(){}
 }
 const elements=new Map();
-const document={getElementById(id){if(!elements.has(id))elements.set(id,new Element('div'));return elements.get(id);},createElement(tag){return new Element(tag);},createDocumentFragment(){return new Element('fragment');}};
+const document={getElementById(id){if(!elements.has(id))elements.set(id,new Element('div'));return elements.get(id);},createElement(tag){return new Element(tag);},createDocumentFragment(){return new Element('fragment');},querySelectorAll(){return [];}};
 const script=html.match(/<script>([\s\S]*?)<\/script>/)[1].replace(/fetch\('\.\/data\.json'\)[\s\S]*$/,'');
-const context=vm.createContext({document,data});
+const context=vm.createContext({document,data,location:{hash:''},window:{addEventListener(){},scrollTo(){}}});
 vm.runInContext(script+';start(data);',context);
 const run=code=>vm.runInContext(code,context);
 assert.equal(data.departments.length,10);
@@ -34,8 +34,17 @@ run("renderDepartment('Summer School');");
 assert.equal(run('state.department'),'Summer School');
 const counts=new Set(data.resources.map(x=>x.href));assert.equal(counts.size,data.resources.length);
 for(const r of data.resources){assert.match(r.href,/^https:\/\//);assert.ok(r.title&&r.department);}
-for(const removed of ['CSS Connect','PBIS Celebration Help','Parent University Courses'])assert.ok(!data.resources.some(x=>x.title===removed));
+for(const removed of ['CSS Connect','PBIS Celebration Help','Parent University Courses','GRPS ENDS Dashboard'])assert.ok(!data.resources.some(x=>x.title===removed));
 assert.ok(!data.resources.some(x=>x.href==='https://grps.org/'));
-assert.ok(fs.existsSync(new URL('./assets/grps-logo.png',import.meta.url)));
+assert.ok(html.includes('src="data:image/png;base64,'));
+assert.equal(run("$('home').hidden"),false);
+assert.equal(run("$('resources').hidden"),true);
+run("location.hash='#resources';showView();");
+assert.equal(run("$('resources').hidden"),false);
+assert.equal(run("$('home').hidden"),true);
+run("location.hash='#departments';showView();");
+assert.equal(run("$('departments').hidden"),false);
+run("location.hash='#home';showView();");
+assert.equal(run("$('home').hidden"),false);
 assert.ok(!fs.readdirSync(new URL('.',import.meta.url)).some(x=>/\.(pdf|docx)$/i.test(x)));
 console.log('PASS: 10 department profiles, '+data.resources.length+' unique links, resource search, filters, reset, department selection, and protected-file exclusions.');
