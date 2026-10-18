@@ -1,26 +1,19 @@
-# CSA Resource Center — GitHub Pages
+# CSA Operating Hub
 
-Public resource directory for GRPS Community & Student Affairs. No build step or paid service is required.
+GRPS Community & Student Affairs resource center for the CSA Leadership Team and CSA staff.
 
-## Publish
+The GitHub Pages site contains Home, resource search and department filters, ten department profiles, and Leadership. Leadership includes six operating expectations, two Leading the GRPS Way presentations, a searchable 47-entry case library, and a case-selectable facilitator guide with copy support. The SOP Center opens the existing written-process library directly.
 
-Create the public repository `grps-csa-resource-center` under `melatkins2-ops`. Upload the contents of this folder to the repository root. In Settings → Pages, select Deploy from a branch, main, and / (root).
+## Update
 
-## Contents
+Edit `index.html` for layout and behavior, and `data.json` for resources, departments, and Leadership content. The official GRPS logo is embedded in the HTML. No framework, build, or paid hosting is required. Pages deploys from `main` at the repository root.
 
-- `index.html`: responsive resource search, department filter, and department profiles.
-- `data.json`: curated department and resource information.
-- `assets/grps-logo.png`: official GRPS logo.
-- `.nojekyll`: enables direct static file hosting.
+Run `node verify.mjs` to check resource navigation, filters, case-to-guide selection, Leadership content, and duplicate-hub exclusions. After changing the data, update the data-request version in `index.html` to avoid a stale cached resource list.
 
-## Protected materials
+## Document access
 
-The package contains no PDFs, Word documents, draft evaluation reports, or supplied case studies. Protected documents link to their existing CSA site or Google Drive locations and retain those services’ access requirements. Internal leadership guidance remains on the signed-in CSA site.
+Document links open the individual file at its existing Google Drive, document host, or publisher location. No supplied case PDFs, licensed readings, draft evaluations, or Word documents are copied into this public repository. Existing file access and publisher terms still apply. The hub no longer sends staff to a second CSA homepage to find Leadership content.
 
-## Verification
+## Verification limits
 
-Validate search, department filtering, resource destinations, and logo paths before publishing. Links are ordinary browser links with visible Open resource actions. Real iPhone/Safari testing remains required; this package has not been visually verified in a phone browser.
-
-## Proposed initial commit
-
-Publish CSA resource directory with 10 department profiles, direct resource links, search and department filtering; retain protected materials at their existing signed-in sources.
+Automated checks do not prove access to every restricted document or replace testing in iPhone Safari. Confirm file permissions with an intended CSA reader before broad distribution.
