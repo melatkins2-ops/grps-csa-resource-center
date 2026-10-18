@@ -15,7 +15,7 @@ class Element {
 }
 const elements=new Map();
 const document={getElementById(id){if(!elements.has(id))elements.set(id,new Element('div'));return elements.get(id);},createElement(tag){return new Element(tag);},createDocumentFragment(){return new Element('fragment');},querySelectorAll(){return [];}};
-const script=html.match(/<script>([\s\S]*?)<\/script>/)[1].replace(/fetch\('\.\/data\.json'\)[\s\S]*$/,'');
+const script=html.match(/<script>([\s\S]*?)<\/script>/)[1].split("fetch('./data.json")[0];
 const context=vm.createContext({document,data,location:{hash:''},window:{addEventListener(){},scrollTo(){}}});
 vm.runInContext(script+';start(data);',context);
 const run=code=>vm.runInContext(code,context);
