@@ -1,0 +1,41 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import vm from 'node:vm';
+
+const html=fs.readFileSync(new URL('./index.html',import.meta.url),'utf8');
+const data=JSON.parse(fs.readFileSync(new URL('./data.json',import.meta.url),'utf8'));
+class Element {
+  constructor(tag){this.tagName=tag;this.children=[];this.value='';this.textContent='';this.events={};this.attributes={};}
+  append(...items){this.children.push(...items);}
+  replaceChildren(...items){this.children=items;}
+  setAttribute(name,value){this.attributes[name]=value;}
+  addEventListener(name,handler){this.events[name]=handler;}
+  scrollIntoView(){}
+  focus(){}
+}
+const elements=new Map();
+const document={getElementById(id){if(!elements.has(id))elements.set(id,new Element('div'));return elements.get(id);},createElement(tag){return new Element(tag);},createDocumentFragment(){return new Element('fragment');}};
+const script=html.match(/<script>([\s\S]*?)<\/script>/)[1].replace(/fetch\('\.\/data\.json'\)[\s\S]*$/,'');
+const context=vm.createContext({document,data});
+vm.runInContext(script+';start(data);',context);
+const run=code=>vm.runInContext(code,context);
+assert.equal(data.departments.length,10);
+assert.equal(document.getElementById('department-list').children.length,10);
+assert.equal(run("state.resources.length"),data.resources.length);
+assert.equal(run("$('resource-list').children[0].children.length"),data.resources.length);
+run("$('search').value='Title I';renderResources();");
+assert.ok(run("$('resource-list').children[0].children.length")>6);
+run("$('search').value='';$('department').value='Health Services';renderResources();");
+assert.ok(run("$('resource-list').children[0].children.length")>=3);
+run("$('reset').events.click();");
+assert.equal(run("$('department').value"),'');
+assert.equal(run("$('resource-list').children[0].children.length"),data.resources.length);
+run("renderDepartment('Summer School');");
+assert.equal(run('state.department'),'Summer School');
+const counts=new Set(data.resources.map(x=>x.href));assert.equal(counts.size,data.resources.length);
+for(const r of data.resources){assert.match(r.href,/^https:\/\//);assert.ok(r.title&&r.department);}
+for(const removed of ['CSS Connect','PBIS Celebration Help','Parent University Courses'])assert.ok(!data.resources.some(x=>x.title===removed));
+assert.ok(!data.resources.some(x=>x.href==='https://grps.org/'));
+assert.ok(fs.existsSync(new URL('./assets/grps-logo.png',import.meta.url)));
+assert.ok(!fs.readdirSync(new URL('.',import.meta.url)).some(x=>/\.(pdf|docx)$/i.test(x)));
+console.log('PASS: 10 department profiles, '+data.resources.length+' unique links, resource search, filters, reset, department selection, and protected-file exclusions.');
