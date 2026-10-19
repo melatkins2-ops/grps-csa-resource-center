@@ -50,7 +50,7 @@
 <label for="department">Department<select id="department"><option value="">All departments</option></select></label>
 </div>
 <div class="result-meta"><p id="result-count" role="status" aria-live="polite">Loading resources…</p><button class="reset" id="reset">Clear search &amp; filters</button></div>
-<div id="resource-list"></div><div id="load-error" hidden>Resources could not load. <a href="https://csa-resource-center.melatkins2.chatgpt.site" target="_blank" rel="noopener">Open the current CSA hub ↗︎</a></div>
+<div id="resource-list"></div><div id="load-error" hidden>Resources are temporarily unavailable. Please refresh this page.</div>
 </section>
 <section id="departments" aria-labelledby="departments-heading" hidden><div class="department-top"><div><span class="eyebrow">Community &amp; Student Affairs</span><h2 id="departments-heading">Our departments</h2></div><label class="department-picker" for="department-list">Choose a department<select id="department-list"></select></label></div><article id="department-detail" aria-live="polite"></article></section>
 <section id="leadership" class="view-intro" hidden>
@@ -162,6 +162,1535 @@ function renderSpotlight(){
 }
 function initLeadership(data){state.leadership=data;initLeadershipConnections(data);for(const b of document.querySelectorAll('[data-leadership]'))b.addEventListener('click',()=>{const tab=b.getAttribute('data-leadership');showLeadership(tab);location.hash='leadership/'+tab;});for(const [title,text] of data.expectations){const row=node('article',null,'expectation-row');row.append(node('h4',title),node('p',text));$('expectation-list').append(row);}for(const deck of data.decks){const row=node('article',null,'deck-row');row.append(node('h4',deck.title),node('p',deck.summary),link('Open presentation\u00a0↗︎',deck.href,'document-link'));if(deck.access)row.append(node('p',deck.access));if(deck.discussionPrompt){row.append(node('h4','Bring the learning into CSA'),node('p',deck.discussionPrompt),node('small',deck.discussionStatus));}const details=node('div',null,'presentation-actions');details.append(node('h4','What this means for CSA'));for(const item of deck.actionMap||[]){details.append(node('h4',item.topic),node('small',item.teams),node('p',item.action));}if(deck.followThrough)details.append(node('h4','Bring back to the team'),node('p',deck.followThrough));if(deck.actionMap?.length)row.append(details);$('presentation-list').append(row);}for(const topic of [...new Set(data.cases.map(c=>c.topic))]){const o=node('option',topic);o.value=topic;$('case-topic').append(o);}for(const c of data.cases){const o=node('option',c.title);o.value=c.id;$('guide-case').append(o);}for(const id of ['case-search','case-topic','case-level'])$(id).addEventListener(id==='case-search'?'input':'change',renderCases);$('case-reset').addEventListener('click',()=>{for(const id of ['case-search','case-topic','case-level'])$(id).value='';renderCases();});$('guide-case').addEventListener('change',renderGuide);$('copy-guide').addEventListener('click',async()=>{const text=guideText();try{await navigator.clipboard.writeText(text);$('guide-copy-status').textContent='Facilitator guide copied.';}catch{$('guide-fallback').value=text;$('guide-fallback').hidden=false;$('guide-fallback').focus();$('guide-fallback').select();$('guide-copy-status').textContent='Select and copy the guide below.';}});renderCases();renderGuide();showLeadership('expectations');}
 
-fetch('./data.json?v=20261019-department-profile-redesign',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('Resource loading failed');return r.json();}).then(start).catch(()=>{$('load-error').hidden=false;$('result-count').textContent='Resource directory unavailable';});
+fetch('./data.json?v=20261019-department-profile-redesign',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('Resource loading failed');return r.json();}).catch(()=>JSON.parse(document.getElementById('embedded-resource-data').textContent)).then(start).catch(()=>{$('load-error').hidden=false;$('result-count').textContent='Resource directory unavailable';});
+</script>
+<script type="application/json" id="embedded-resource-data">{
+  "departments": [
+    {
+      "name": "Assessment & Evaluation",
+      "purpose": "Strengthens decision-making through assessment, evaluation, data quality, analysis, and clear evidence routines.",
+      "provides": [
+        "Reliable analysis and evaluation",
+        "Common evidence routines"
+      ],
+      "needs": [
+        "Clear questions and definitions",
+        "Accurate data and implementation context"
+      ],
+      "connects": [
+        "Outcome, implementation, and experience measures",
+        "Program evaluation",
+        "Data inquiry and reporting"
+      ],
+      "owns": [
+        "District assessment and accountability routines",
+        "Program evaluation, surveys, and findings",
+        "Data access, quality, definitions, and reporting",
+        "Research, data-sharing, and student-growth guidance"
+      ],
+      "influences": [
+        "School and department improvement decisions",
+        "Program design, grant evaluation, and resource choices",
+        "How leaders interpret outcomes, implementation, and experience"
+      ],
+      "when": [
+        "A program needs an evaluation or measurement plan",
+        "A team needs help interpreting data or defining a measure",
+        "Leaders need credible evidence for a decision"
+      ]
+    },
+    {
+      "name": "Behavioral Health",
+      "purpose": "Connects scholars and families with school-based mental health services, crisis support, and care coordination, while working with schools and community providers.",
+      "provides": [
+        "School-based clinical support and mental-health crisis coordination",
+        "Care coordination and referrals to community providers"
+      ],
+      "needs": [
+        "Early identification and referral context",
+        "Consent, urgency, and follow-through information"
+      ],
+      "connects": [
+        "School-based individual and group therapy",
+        "Mental-health crisis response and care coordination",
+        "Community-provider and school support pathways"
+      ],
+      "owns": [
+        "School-based mental-health service pathways",
+        "Clinical practice, consent, referral, and care coordination",
+        "Mental-health crisis response and continuity of care",
+        "School and community-provider coordination"
+      ],
+      "influences": [
+        "MTSS, attendance, and discipline response",
+        "Re-entry, school climate, and conditions for scholar wellness",
+        "District capacity for prevention and early intervention"
+      ],
+      "when": [
+        "A scholar or family needs school-based mental-health services or a referral path",
+        "The school needs help coordinating a mental-health crisis response under current GRPS procedure",
+        "A cross-school or partner capacity issue needs coordination",
+        "B-TAM training or team roles need review with Public Safety; targeted-violence assessment is distinct from suicide-risk response"
+      ]
+    },
+    {
+      "name": "Counseling",
+      "purpose": "Supports scholars through coordinated academic, career, postsecondary, and social-emotional counseling services.",
+      "provides": [
+        "Scholar planning and counseling",
+        "Academic, career, and transition support"
+      ],
+      "needs": [
+        "Connected scholar evidence",
+        "Clear referral and escalation pathways"
+      ],
+      "connects": [
+        "School counseling systems",
+        "Postsecondary readiness",
+        "Scholar planning and support"
+      ],
+      "owns": [
+        "Comprehensive school counseling program and practice",
+        "GRPS postsecondary planning, college/career pathways, dual enrollment, and transitions",
+        "Responsive counseling, suicide/self-harm protocol, and scholar-support coordination",
+        "Master scheduling, graduation milestones, monthly audits, and credit-planning support"
+      ],
+      "influences": [
+        "Postsecondary readiness",
+        "Academic achievement and on-track graduation",
+        "Attendance, SEL, mental health, and scholar support"
+      ],
+      "when": [
+        "Academic, career, postsecondary, or transition planning needs support",
+        "A school counseling practice or pathway needs clarification",
+        "A scholar-support handoff spans counseling and another system"
+      ]
+    },
+    {
+      "name": "Community & Student Services",
+      "purpose": "Supports scholars, families, and schools by connecting home, school, and community; removing barriers; and creating practical pathways for academic, social-emotional, and physical needs.",
+      "provides": [
+        "Student-service coordination",
+        "Enrollment and support pathways"
+      ],
+      "needs": [
+        "School and family context",
+        "Program capacity and confirmed handoffs"
+      ],
+      "connects": [
+        "Home, school, and community coordination",
+        "Barrier removal and scholar-success pathways",
+        "Enrollment, records, and student-service access"
+      ],
+      "owns": [
+        "Enrollment, registration, transfers, and scholar-mobility systems",
+        "Theme-school applications, School of Choice, and Section 6 releases",
+        "Records, transcripts, proof-of-attendance requests, diploma requests, and work permits",
+        "Scholar Resource & Responsibility Guide, disciplinary hearings, and coordinated student-service pathways"
+      ],
+      "influences": [
+        "Home-school-community coordination and attendance barrier response",
+        "Intervention access and service equity",
+        "Scholar and family service experience",
+        "Academic, social-emotional, physical, and special-population support pathways"
+      ],
+      "when": [
+        "Enrollment, records, work permits, hearings, or student-service access is unclear",
+        "A school or family needs coordinated support across programs",
+        "A scholar or family barrier crosses home, school, community, or district services"
+      ]
+    },
+    {
+      "name": "Health Services",
+      "purpose": "Promotes scholar health, maintains safe school environments, prevents disease, minimizes the impact of disability, and connects health care with educational access.",
+      "provides": [
+        "Health guidance, forms, and school-nursing support",
+        "Care coordination and school-based health-center access"
+      ],
+      "needs": [
+        "Current health, provider, caregiver-consent, and school context",
+        "Early communication about health barriers affecting access or attendance"
+      ],
+      "connects": [
+        "School nursing and care coordination",
+        "Immunization, medication, illness, and medical-response guidance",
+        "School-based health centers and community health partners"
+      ],
+      "owns": [
+        "School nursing practice, health-service coordination, and nursing supervision",
+        "Medication, treatment, self-administration, and health-record guidance",
+        "Immunization coordination, communicable-disease response, and exclusion guidance",
+        "Medical-emergency readiness and school-based health-center partnerships",
+        "Health-visit, HSR, MiPHY, and health-education reporting"
+      ],
+      "influences": [
+        "Scholar access, attendance, safety, and academic participation",
+        "Caregiver understanding of school health requirements",
+        "Behavioral-health, special-education, and student-service coordination"
+      ],
+      "when": [
+        "A scholar needs medication, treatment, or a medical procedure during the school day",
+        "Immunization, illness, exclusion, medical-emergency, or health-record guidance is needed",
+        "A health condition or disability is affecting safe access, attendance, or participation",
+        "A family needs a school-based health-center pathway"
+      ]
+    },
+    {
+      "name": "Extended Learning",
+      "purpose": "Develops coherent learning opportunities beyond the traditional day and year, including enrichment and academic acceleration.",
+      "provides": [
+        "Expanded learning opportunities",
+        "Provider and program-quality structures"
+      ],
+      "needs": [
+        "Defined scholar need and access data",
+        "Schedules, staffing, funding, and outcome evidence"
+      ],
+      "connects": [
+        "High-impact tutoring",
+        "Expanded learning",
+        "Provider and program quality"
+      ],
+      "owns": [
+        "Extended-day, afterschool, enrichment, and tutoring design",
+        "21st Century grant administration and program coordination",
+        "Provider selection, program quality, and launch readiness",
+        "Participation, dosage, access, and implementation monitoring"
+      ],
+      "influences": [
+        "Academic acceleration and enrichment",
+        "Access, engagement, and opportunity",
+        "School schedules, partnerships, and continuity beyond the school day"
+      ],
+      "when": [
+        "A school is considering tutoring, enrichment, or expanded learning",
+        "A provider, schedule, access, dosage, or quality question must be resolved",
+        "A program needs launch-readiness or implementation review"
+      ]
+    },
+    {
+      "name": "Social Emotional Learning",
+      "purpose": "Builds consistent SEL implementation, adult practice, positive conditions for learning, and CASEL-aligned scholar supports.",
+      "provides": [
+        "CASEL-aligned practices and tools",
+        "Positive-conditions framework"
+      ],
+      "needs": [
+        "Audience and implementation context",
+        "Adult-learning and impact evidence"
+      ],
+      "connects": [
+        "SEL Resource Hub",
+        "Adult and scholar practices",
+        "MTSS and PBIS+ alignment"
+      ],
+      "owns": [
+        "District SEL framework, coordination, and resource standards",
+        "CASEL-aligned implementation, curriculum support, and professional learning",
+        "SEL Helpdesk, School Leadership Team coaching, and adult capacity building",
+        "Panorama, implementation evidence, and PBIS+/MTSS continuous-improvement routines"
+      ],
+      "influences": [
+        "School climate, PBIS+, and MTSS",
+        "Adult practice and positive conditions",
+        "Attendance, behavior, discipline, and learning readiness"
+      ],
+      "when": [
+        "A school or team needs SEL implementation or resource guidance",
+        "An audience needs multiple CASEL-aligned options",
+        "SEL must connect with MTSS, PBIS+, attendance, or adult practice"
+      ]
+    },
+    {
+      "name": "State & Federal Programs",
+      "purpose": "Leads attendance, continuous improvement, and state and federal program implementation so school needs become coordinated, evidence-based action.",
+      "provides": [
+        "Attendance and continuous-improvement leadership",
+        "Program, allowability, and implementation guidance"
+      ],
+      "needs": [
+        "School goals, root-cause evidence, implementation context, and stakeholder input",
+        "Timely attendance, achievement, staffing, spending, and program evidence"
+      ],
+      "connects": [
+        "Attendance strategy, training, and progress monitoring",
+        "MICIP, needs assessment, and school improvement",
+        "Title I, 31a, grants, and program monitoring"
+      ],
+      "owns": [
+        "District attendance strategy, staff learning, progress monitoring, and initiative evaluation",
+        "FSS and KSSN attendance-support coordination",
+        "Michigan Integrated Continuous Improvement Process (MICIP) alignment and continuous-improvement support",
+        "Title I, 31a, and state/federal grant implementation",
+        "Allowability, coding, staffing, and compliance guidance",
+        "Private-school consultation and equitable services",
+        "Monitoring, documentation, amendments, and closeout"
+      ],
+      "influences": [
+        "School improvement goals, evidence-based interventions, and instructional support",
+        "Attendance culture, barrier removal, and school-team practice",
+        "Staffing, spending, and program design",
+        "Data use, family engagement, and funded service quality"
+      ],
+      "when": [
+        "A school needs help with attendance strategy, attendance-team practice, progress monitoring, or initiative evaluation",
+        "A team is moving from comprehensive needs assessment and root cause to a MICIP-aligned goal, strategy, and measure",
+        "A grant-funded activity, purchase, staffing plan, or requirement needs review",
+        "A Title I or compliance process needs implementation guidance",
+        "Documentation, coding, monitoring, or evidence expectations are unclear"
+      ]
+    },
+    {
+      "name": "Summer School",
+      "purpose": "Plans and operates summer learning as a coordinated district experience with clear access, staffing, programming, and outcomes.",
+      "provides": [
+        "Districtwide summer design and operations",
+        "Launch-readiness coordination"
+      ],
+      "needs": [
+        "Enrollment and scholar-need data",
+        "Staffing, curriculum, transportation, and site readiness"
+      ],
+      "connects": [
+        "Summer program design",
+        "Staffing and operations",
+        "Participation and outcome review"
+      ],
+      "owns": [
+        "Districtwide Ignite planning and implementation",
+        "Summer enrollment, staffing, curriculum, and site readiness",
+        "Transportation, food, family communication, and daily operations",
+        "Participation, evaluation, closeout, and annual improvement"
+      ],
+      "influences": [
+        "Extended-learning continuity",
+        "Equitable access and scholar transitions",
+        "Academic acceleration, enrichment, and fall readiness"
+      ],
+      "when": [
+        "Summer programming, access, staffing, or site readiness needs coordination",
+        "A summer implementation barrier affects multiple teams",
+        "Participation, experience, or outcome evidence needs review"
+      ]
+    },
+    {
+      "name": "Family & Community Engagement",
+      "purpose": "Builds meaningful, accessible, two-way partnerships with caregivers and community organizations.",
+      "provides": [
+        "Family voice and partnership structures",
+        "Accessible engagement and feedback routines"
+      ],
+      "needs": [
+        "Timely, plain-language program information",
+        "Access supports and evidence of how input was used"
+      ],
+      "connects": [
+        "Family voice and leadership",
+        "Community partnerships",
+        "Learning-linked engagement"
+      ],
+      "owns": [
+        "Districtwide family-engagement framework and capacity building",
+        "Parent University and family-learning opportunities",
+        "Parent Action Leaders and PTCC leadership structures",
+        "Family voice, accessible engagement, and community partnerships"
+      ],
+      "influences": [
+        "Program design and communication",
+        "Service experience and community trust",
+        "Attendance, learning, belonging, and family decision-making"
+      ],
+      "when": [
+        "A team needs meaningful family voice or accessible two-way engagement",
+        "A caregiver or community partnership pathway is unclear",
+        "A program needs learning-linked engagement or feedback design"
+      ]
+    }
+  ],
+  "resources": [
+    {
+      "title": "GRPS Team Workspace",
+      "department": "Assessment & Evaluation",
+      "description": "Use a real team question to review evidence, identify what matters, assign the next move, and return to the work.",
+      "status": "Working GRPS tool",
+      "href": "https://melatkins2-ops.github.io/grps-team-workspace/",
+      "restricted": false
+    },
+    {
+      "title": "GRPS Annual Education Report",
+      "department": "Assessment & Evaluation",
+      "description": "Review current district assessment and educational progress reporting required by state and federal law.",
+      "status": "Current district resource",
+      "href": "https://grps.org/our-district/transparency/annual-reports/",
+      "restricted": false
+    },
+    {
+      "title": "MI School Data",
+      "department": "Assessment & Evaluation",
+      "description": "Access public Michigan education data and verified district, school, and subgroup reporting.",
+      "status": "External reference",
+      "href": "https://www.mischooldata.org/",
+      "restricted": false
+    },
+    {
+      "title": "Suicide Prevention One-Pagers",
+      "department": "Behavioral Health",
+      "description": "Use the GRPS C-SSRS reference, risk levels, response guidance, and behavioral-health contacts.",
+      "status": "Current district resource",
+      "href": "https://csa-resource-center.melatkins2.chatgpt.site/suicide-prevention-one-pagers.pdf",
+      "restricted": true
+    },
+    {
+      "title": "GRPS School-Based Mental Health Services",
+      "department": "Behavioral Health",
+      "description": "See how families can ask for services, what happens before treatment, and whom to contact. Confirm clinician availability with the team.",
+      "status": "Current district resource",
+      "href": "https://grps.org/departments/school-based-mental-health-services/",
+      "restricted": false
+    },
+    {
+      "title": "Michigan K-12 B-TAM Training Overview",
+      "department": "Behavioral Health",
+      "description": "Use for team learning about threats of targeted violence. Confirm GRPS team roles, referral threshold, documentation, and approval before using a local form.",
+      "status": "External reference",
+      "href": "https://www.michigan.gov/msp/divisions/grantscommunityservices/school-safety/michigan-k12-behavioral-threat-assessment-and-management",
+      "restricted": false
+    },
+    {
+      "title": "Network180 Youth Mental Health Support",
+      "department": "Behavioral Health",
+      "description": "Connect families with public behavioral-health access and crisis-support information for youth.",
+      "status": "External reference",
+      "href": "https://parents.grps.org/resource/network-180-mental-health-support-for-youth/",
+      "restricted": false
+    },
+    {
+      "title": "School Counselor Directory 2026–27",
+      "department": "Counseling",
+      "description": "Find the counselor assigned to each GRPS building this school year.",
+      "status": "Current district resource",
+      "href": "https://drive.google.com/file/d/1-S9_hhIGws8IxT8cyhAJ-jKIkkhVnL3n/view?usp=drivesdk",
+      "restricted": true
+    },
+    {
+      "title": "Counseling Processes and Procedures Guide",
+      "department": "Counseling",
+      "description": "Scheduling, credit recovery, academic planning, and postsecondary routines. Confirm dated steps with Counseling.",
+      "status": "Under review",
+      "href": "https://docs.google.com/document/d/1g49LGVXuBXfYHb5NTQsy7P0qpCCgok43/edit?usp=drivesdk",
+      "restricted": true
+    },
+    {
+      "title": "Kent ISD Career Readiness Framework",
+      "department": "Counseling",
+      "description": "Choose the K–6, 7–8, or 9–12 grade band to plan career discovery, career preparation, and postsecondary pathway experiences. Connect the framework to the school’s current counseling plan before use.",
+      "status": "External reference",
+      "href": "https://www.kentisd.org/educators/career-readiness/framework/",
+      "restricted": false
+    },
+    {
+      "title": "GRPS Academics & Dual Enrollment",
+      "department": "Counseling",
+      "description": "Connect counseling work to district academic models, curriculum, dual enrollment, and readiness pathways.",
+      "status": "Current district resource",
+      "href": "https://grps.org/departments/academics/",
+      "restricted": false
+    },
+    {
+      "title": "GRPS Community & Student Services",
+      "department": "Community & Student Services",
+      "description": "Start with the department's current focus areas and official routes for enrollment, records, work permits, the Scholar Resource & Responsibility Guide, and scholar and family support.",
+      "status": "Current district resource",
+      "href": "https://grps.org/departments/css/",
+      "restricted": false
+    },
+    {
+      "title": "GRPS Enrollment Support",
+      "department": "Community & Student Services",
+      "description": "Support prospective, new, returning, and former GRPS families with enrollment questions and access.",
+      "status": "Current district resource",
+      "href": "https://parents.grps.org/resource/grps-enrollment-support/",
+      "restricted": false
+    },
+    {
+      "title": "Immigration & Family Preparedness Resources",
+      "department": "Community & Student Services",
+      "description": "Share legal-rights, preparedness, and access resources with immigrant scholars and families.",
+      "status": "Current district resource",
+      "href": "https://grps.org/district-resources/immigration-resources/",
+      "restricted": false
+    },
+    {
+      "title": "FSS + KSSN Collaboration Model",
+      "department": "State & Federal Programs",
+      "description": "Clarify the distinct and shared responsibilities of Family Support Specialists and KSSN Coordinators when removing attendance barriers.",
+      "status": "Working GRPS tool",
+      "href": "https://melatkins2-ops.github.io/grps-fss-kssn-integration-test/",
+      "restricted": false
+    },
+    {
+      "title": "GRPS Health Services",
+      "department": "Health Services",
+      "description": "Find current school-nursing information, health forms, immunization guidance, illness guidance, medication requirements, and health-service contacts.",
+      "status": "Current district resource",
+      "href": "https://grps.org/departments/health-services/",
+      "restricted": false
+    },
+    {
+      "title": "School-Based Health Center Appointment Request",
+      "department": "Health Services",
+      "description": "Request an appointment at a Cherry Health School-Based Health Center located at a GRPS school.",
+      "status": "Current district resource",
+      "href": "https://grps.org/departments/health-services/health-app/",
+      "restricted": false
+    },
+    {
+      "title": "Medication and Treatment Consent Form",
+      "department": "Health Services",
+      "description": "Complete the required provider and caregiver authorization when medication or treatment must be provided during the school day.",
+      "status": "Current district resource",
+      "href": "https://grps-cdn.fxbrt.com/downloads/health_services/medconsent.pdf",
+      "restricted": false
+    },
+    {
+      "title": "Medication Self-Administration Consent Form",
+      "department": "Health Services",
+      "description": "Use the current authorization form for approved self-administration of medication or treatment at school.",
+      "status": "Current district resource",
+      "href": "https://grps-cdn.fxbrt.com/downloads/health_services/selfadmin-medconsent.pdf",
+      "restricted": false
+    },
+    {
+      "title": "Extended Day Operations Hub",
+      "department": "Extended Learning",
+      "description": "Use current program guidance for school planning, principal decisions, partner expectations, budgets, and implementation.",
+      "status": "Working GRPS tool",
+      "href": "https://melatkins2-ops.github.io/extended-day-operations-hub/",
+      "restricted": false
+    },
+    {
+      "title": "GRPS Extended Learning",
+      "department": "Extended Learning",
+      "description": "Review afterschool service delivery, provider partnerships, operating expectations, and contact information.",
+      "status": "Current district resource",
+      "href": "https://grps.org/departments/academics/extended-learning/",
+      "restricted": false
+    },
+    {
+      "title": "Grand Rapids Academic Summer Program",
+      "department": "Extended Learning",
+      "description": "Access GRASP information for K–8 summer math and reading learning continuity.",
+      "status": "Current district resource",
+      "href": "https://grps.org/departments/academics/grasp/",
+      "restricted": false
+    },
+    {
+      "title": "GRPS SEL Resource Hub",
+      "department": "Social Emotional Learning",
+      "description": "Find GRPS SEL practices, curriculum connections, and implementation support by audience, setting, and need.",
+      "status": "Working GRPS tool",
+      "href": "https://melatkins2-ops.github.io/grps-sel-resource-hub/",
+      "restricted": false
+    },
+    {
+      "title": "PBIS+ 2026–27 Resource Folder",
+      "department": "Social Emotional Learning",
+      "description": "Current-year PBIS+ source materials; use the version that fits the school and task.",
+      "status": "Current district resource",
+      "href": "https://drive.google.com/drive/folders/1oslSRhUf-vDzAObNjDOCoIcLxTkYlujJ",
+      "restricted": true
+    },
+    {
+      "title": "PBIS Best Practices Guide",
+      "department": "Social Emotional Learning",
+      "description": "Use the current-year guide to strengthen prevention, teaching, acknowledgement, and implementation.",
+      "status": "Current district resource",
+      "href": "https://drive.google.com/file/d/1CD4OfB65T6JkM2S205IBBAYI9V-D-AYX/view?usp=drivesdk",
+      "restricted": true
+    },
+    {
+      "title": "Alternatives to Suspension",
+      "department": "Social Emotional Learning",
+      "description": "Review potential responses against current discipline requirements before use.",
+      "status": "Under review",
+      "href": "https://drive.google.com/file/d/1ODyy8aYSEhRneptvmvaytx34SfPJQhKB/view?usp=drivesdk",
+      "restricted": true
+    },
+    {
+      "title": "GRPS SEL Curriculum",
+      "department": "Social Emotional Learning",
+      "description": "Review district Second Step and Wayfinder implementation information and curriculum context.",
+      "status": "Current district resource",
+      "href": "https://grps.org/departments/sel/sel-curriculum/",
+      "restricted": false
+    },
+    {
+      "title": "CASEL Framework",
+      "department": "Social Emotional Learning",
+      "description": "Use the current CASEL framework to connect competencies, environments, adult practice, and implementation.",
+      "status": "External reference",
+      "href": "https://casel.org/what-is-sel/",
+      "restricted": false
+    },
+    {
+      "title": "MTSS Field Manual",
+      "department": "Social Emotional Learning",
+      "description": "Connect SEL and mental health with academics, attendance, and behavior/PBIS decision-making.",
+      "status": "Working GRPS tool",
+      "href": "https://melatkins2-ops.github.io/grps-mtss-field-manual-review/",
+      "restricted": false
+    },
+    {
+      "title": "Kent ISD MTSS Tier One",
+      "department": "Social Emotional Learning",
+      "description": "Open Kent ISD's Tier One presentation for universal-practice learning. Use the GRPS MTSS Field Manual to connect learning to local routines.",
+      "status": "External reference",
+      "href": "https://sites.google.com/kentisd.org/kentisd-mtss/professional-learning/tier-one?authuser=0",
+      "restricted": false
+    },
+    {
+      "title": "Kent ISD MTSS Professional Learning",
+      "department": "Social Emotional Learning",
+      "description": "Find the Kent ISD MTSS team, professional-learning, data-review, and communication routes in one hub.",
+      "status": "External reference",
+      "href": "https://sites.google.com/kentisd.org/kentisd-mtss/professional-learning",
+      "restricted": false
+    },
+    {
+      "title": "GRPS Title I Handbook",
+      "department": "State & Federal Programs",
+      "description": "Background reference covering Title I fundamentals, federal-fund spending, family engagement, annual meetings, needs assessment, program implementation and evaluation, and on-site review. Because the handbook was produced in 2022-23, confirm current requirements, forms, deadlines, and procedures before use.",
+      "status": "Historical reference",
+      "href": "https://csa-resource-center.melatkins2.chatgpt.site/grps-title-i-handbook-2023-reference.pdf",
+      "restricted": true
+    },
+    {
+      "title": "Strive for Less Than 5 Playbook",
+      "department": "State & Federal Programs",
+      "description": "Use the district playbook for attendance strategy, roles, routines, tools, staff learning, barrier response, progress monitoring, and implementation guidance.",
+      "status": "Current",
+      "href": "https://drive.google.com/file/d/1deR55tG7ApGoBtDkyhztVtG_q7aAwM3d/view?usp=drivesdk",
+      "restricted": true
+    },
+    {
+      "title": "Strive for 5 Attendance Toolkit",
+      "department": "State & Federal Programs",
+      "description": "Open communication resources, family-facing materials, and supporting tools with updated links.",
+      "status": "Current district resource",
+      "href": "https://drive.google.com/file/d/1IB-b8hYlut-umaXb30QopKNXi3C6P_ii/view?usp=drivesdk",
+      "restricted": true
+    },
+    {
+      "title": "Strive for 5 Interactive Playbook",
+      "department": "State & Federal Programs",
+      "description": "Move through the Strive for 5 content in an interactive format and report content or usability issues. Use sample or non-identifying information only.",
+      "status": "Pilot / testing only",
+      "href": "https://melatkins2-ops.github.io/grps-strive-for-5-pilot/",
+      "restricted": false
+    },
+    {
+      "title": "Title I Implementation Center",
+      "department": "State & Federal Programs",
+      "description": "Support annual meetings, family engagement, spending, staffing documentation, and monitoring.",
+      "status": "Working GRPS tool",
+      "href": "https://melatkins2-ops.github.io/grps-title-i-resource-center/",
+      "restricted": false
+    },
+    {
+      "title": "GRPS Title I Game Show",
+      "department": "State & Federal Programs",
+      "description": "Use the interactive game to check and strengthen understanding of Title I requirements, decisions, and common misconceptions.",
+      "status": "Working GRPS tool",
+      "href": "https://grps-title-i-game-show.melatkins2.chatgpt.site/",
+      "restricted": false
+    },
+    {
+      "title": "GRPS Title I Learning Modules",
+      "department": "State & Federal Programs",
+      "description": "Complete the guided modules for foundational Title I learning, school responsibilities, and application. GRPS sign-in may be required.",
+      "status": "Working GRPS tool",
+      "href": "https://grps-title-i-modules.melatkins2.chatgpt.site/",
+      "restricted": true
+    },
+    {
+      "title": "Title I NOW",
+      "department": "State & Federal Programs",
+      "description": "See the current Title I priorities, required actions, toolkit links, and near-term roadmap.",
+      "status": "Working GRPS tool",
+      "href": "https://melatkins2-ops.github.io/grps-title-i-now/",
+      "restricted": false
+    },
+    {
+      "title": "GRPS School Needs & Title I Planning",
+      "department": "State & Federal Programs",
+      "description": "Connect a school's identified need to Title I planning, implementation, and evidence; confirm allowability and approval with the department.",
+      "status": "Working GRPS tool",
+      "href": "https://melatkins2-ops.github.io/grps-cna/",
+      "restricted": false
+    },
+    {
+      "title": "MDE State & Federal Programs",
+      "department": "State & Federal Programs",
+      "description": "Consult current state guidance before treating local planning tools as final compliance direction.",
+      "status": "External reference",
+      "href": "https://www.michigan.gov/mde/services/school-performance-supports/educational-supports/state-and-federal-programs",
+      "restricted": false
+    },
+    {
+      "title": "MDE 2026–27 OES Applications Schedule",
+      "department": "State & Federal Programs",
+      "description": "Check the state application and amendment windows against our district planning calendar; confirm the specific program before assigning a deadline.",
+      "status": "External reference",
+      "href": "https://www.michigan.gov/mde/-/media/Project/Websites/mde/OES/Current-Topics/OES_Applications_Schedule.pdf?hash=3CA5A6C45A353F81E0A3535678FDF64A&rev=ae98cbdd35404355b5ad4472789834b2",
+      "restricted": false
+    },
+    {
+      "title": "MDE Regional On-Site Review Materials",
+      "department": "State & Federal Programs",
+      "description": "Identify the evidence reviewers expect for implementation and monitoring before we assemble a district packet.",
+      "status": "External reference",
+      "href": "https://www.michigan.gov/mde/services/school-performance-supports/educational-supports/current-topics/regional-on-site-review-materials",
+      "restricted": false
+    },
+    {
+      "title": "MDE Allowable Use FAQ",
+      "department": "State & Federal Programs",
+      "description": "Start a funding question with the state's current FAQ, then confirm the grant, district approval, and coding before purchase.",
+      "status": "External reference",
+      "href": "https://www.michigan.gov/mde/-/media/Project/Websites/mde/OES/Tools-and-Resources/Federal_and_State_Programs_Allowable_Use_FAQ.pdf?hash=E3227E4E58D760CF11667CC5FDB62763&rev=f2a596e7a7734d9b98158463ec080524",
+      "restricted": false
+    },
+    {
+      "title": "MDE MICIP–Title I Crosswalk",
+      "department": "State & Federal Programs",
+      "description": "Connect the need and MICIP strategy to Title I activity and implementation evidence; alignment is not spending approval.",
+      "status": "External reference",
+      "href": "https://www.michigan.gov/mde/-/media/Project/Websites/mde/MICIP/Resources/MICIP_Crosswalk_with_Title_I.pdf?hash=27464D8A8C422AC0ACA222431EB4169F&rev=9219f94201164b45bdb25de9108776b6",
+      "restricted": false
+    },
+    {
+      "title": "MDE Equitable Services",
+      "department": "State & Federal Programs",
+      "description": "Review the state's private-school consultation and documentation resources for the applicable Title program.",
+      "status": "External reference",
+      "href": "https://www.michigan.gov/mde/services/equitable-services",
+      "restricted": false
+    },
+    {
+      "title": "Ignite Summer Program Evaluation - 2025",
+      "department": "Summer School",
+      "description": "Review enrollment, attendance, participant feedback, implementation findings, and planning implications.",
+      "status": "Current district resource",
+      "href": "https://csa-resource-center.melatkins2.chatgpt.site/ignite-summer-program-evaluation-2025.pdf",
+      "restricted": true
+    },
+    {
+      "title": "Ignite Summer Program Draft Evaluation Report - 2026",
+      "department": "Summer School",
+      "description": "Review the under-review findings on enrollment, attendance, access and equity, stakeholder feedback, academic outcomes, high-school credits, implementation, and Summer 2027 recommendations.",
+      "status": "Under review",
+      "href": "https://csa-resource-center.melatkins2.chatgpt.site/ignite-summer-program-evaluation-report-2026-draft.pdf",
+      "restricted": true
+    },
+    {
+      "title": "Ignite: Summer Learning at GRPS",
+      "department": "Summer School",
+      "description": "The 2026 application window is closed. Check the official page for a future cycle rather than sending families here as an open enrollment route.",
+      "status": "Current district resource",
+      "href": "https://grps.org/departments/academics/ignite-summer-learning-at-grps/",
+      "restricted": false
+    },
+    {
+      "title": "Ignite 2026 Program Summary",
+      "department": "Summer School",
+      "description": "Compare the 2026 recruitment, access, staffing, partnerships, and intended outcomes with evaluation findings before we design the next summer. Its dates and eligibility are not current instructions.",
+      "status": "Historical reference",
+      "href": "https://docs.google.com/document/d/11v46qM-nOIxeJEs7LdL3XiucmqFWFQaN/edit",
+      "restricted": true
+    },
+    {
+      "title": "Ignite 2025 Evaluation Plan",
+      "department": "Summer School",
+      "description": "Compare the questions and measures planned for Ignite 2025 with what the final report could actually answer; carry forward only useful measures.",
+      "status": "Historical reference",
+      "href": "https://drive.google.com/file/d/1KvEqAfWva6Et9zwDQ4_VN9MP59zM9lOT/view?usp=drivesdk",
+      "restricted": true
+    },
+    {
+      "title": "GRPS Parent University Family Hub",
+      "department": "Family & Community Engagement",
+      "description": "Help a family find a relevant learning or support pathway, then confirm current offerings on the official Parent University site.",
+      "status": "Working GRPS tool",
+      "href": "https://melatkins2-ops.github.io/parent-university/",
+      "restricted": false
+    },
+    {
+      "title": "Parent University Resource Library",
+      "department": "Family & Community Engagement",
+      "description": "Find current family-facing tools, community supports, and learning resources in one public collection.",
+      "status": "Current district resource",
+      "href": "https://parents.grps.org/resources/",
+      "restricted": false
+    },
+    {
+      "title": "Parent University & Family Engagement",
+      "department": "Family & Community Engagement",
+      "description": "Review Parent University, PALs, PTCC, classes, and family-engagement access information.",
+      "status": "Current district resource",
+      "href": "https://parents.grps.org/",
+      "restricted": false
+    },
+    {
+      "title": "Parent Action Leaders (PALs) Hub",
+      "department": "Family & Community Engagement",
+      "description": "Connect a caregiver with their school's PAL and explain the PAL's role in school-family engagement.",
+      "status": "Current district resource",
+      "href": "https://parents.grps.org/pals-hub/",
+      "restricted": false
+    },
+    {
+      "title": "PAL Inspiration & Activity Kits",
+      "department": "Family & Community Engagement",
+      "description": "Start a building family-engagement activity with the GRPS PAL kits, then adjust the format using family input.",
+      "status": "Current district resource",
+      "href": "https://parents.grps.org/pals/pals-inspiration/",
+      "restricted": false
+    },
+    {
+      "title": "Power Parent Magazine",
+      "department": "Family & Community Engagement",
+      "description": "Share current GRPS family articles and check the issue date before bringing one into a CSA newsletter.",
+      "status": "Current district resource",
+      "href": "https://parents.grps.org/school-info/",
+      "restricted": false
+    },
+    {
+      "title": "Chronic Absenteeism: End of Year Report — 2025–26",
+      "department": "State & Federal Programs",
+      "description": "Review district attendance results, grade-band patterns, the attendance Community of Practice, and professional learning. Two-page report.",
+      "status": "2025–26 report",
+      "href": "https://melatkins2-ops.github.io/grps-csa-resource-center/grps-chronic-absenteeism-2025-26.pdf",
+      "restricted": false,
+      "report": true
+    },
+    {
+      "title": "PBIS+ Installation Update — Tiered Fidelity Inventory",
+      "department": "Social Emotional Learning",
+      "description": "Review Tier 1 implementation results and 2024–25 / 2025–26 school comparisons. The table shows eight schools at or above 70%. Two-page report.",
+      "status": "2025–26 report",
+      "href": "https://melatkins2-ops.github.io/grps-csa-resource-center/grps-tiered-fidelity-inventory-2025-26.pdf",
+      "restricted": false,
+      "report": true
+    },
+    {
+      "title": "Forecasting MTSS in Grand Rapids Public Schools",
+      "department": "Social Emotional Learning",
+      "description": "July 2025 planning document covering MTSS installation, department connections, school teams, and progress monitoring. Proposed structures and timelines are historical planning guidance. Original report with approved cover photos. 21 pages.",
+      "status": "July 2025 planning document",
+      "href": "https://melatkins2-ops.github.io/grps-csa-resource-center/forecasting-mtss-grps-july-2025.pdf",
+      "restricted": false,
+      "report": true
+    }
+  ],
+  "leadership": {
+    "expectations": [
+      [
+        "Keep scholars at the center",
+        "Be clear about how the work of your department improves the experience of scholars, families, and schools. Use their experience to help us understand what is working and what needs to change."
+      ],
+      [
+        "Know your work. Know your data.",
+        "Know the priorities, progress, and challenges in your department. Come ready to explain what the data tells us, whose experience may be different, and what we need to pay attention to next."
+      ],
+      [
+        "Help us think it through",
+        "When you raise an issue, share what you know, what you have tried, and where you need help. We can work through the next step together. Raise concerns early enough for us to respond."
+      ],
+      [
+        "Lead beyond your department",
+        "Understand how your decisions affect other teams. Involve the right people early, work through concerns directly, and take responsibility for the connections your work depends on."
+      ],
+      [
+        "Follow through",
+        "Do what you say you will do. Make sure people know who is responsible and when to expect the next step. If something changes, communicate it. Return to the work and check whether it made a difference."
+      ],
+      [
+        "Build the capacity of your team",
+        "Make expectations clear, provide useful feedback, and create opportunities for people to learn and lead. Document the work so your team can carry it forward with confidence."
+      ]
+    ],
+    "decks": [
+      {
+        "date": "October 2026",
+        "title": "Leading the GRPS Way — October 2026",
+        "summary": "October principal-meeting presentation. Open the slides in SharePoint.",
+        "href": "https://grpublicschools-my.sharepoint.com/:p:/g/personal/pierrep_grps_org/IQDgcVief4BzTZz91YOGXxQLARxcWVY6aLrlUWUTTaCJ8sk?e=jCwgXj&CID=16836928-2bf8-35c0-480c-1a2057f07f32",
+        "actionMap": [],
+        "access": "SharePoint · GRPS Microsoft 365 access may be required.",
+        "discussionPrompt": "After reviewing the October slides, identify one message our teams need to understand, the CSA work it affects, and any guidance we need to clarify with schools. Bring back the action taken and what still needs attention.",
+        "discussionStatus": "CSA discussion prompt; the slide content has not yet been summarized here."
+      },
+      {
+        "date": "August 3, 2026",
+        "title": "Leading the GRPS Way — August 3, 2026",
+        "summary": "Opening-of-school leadership learning covering budget, HR and evaluation, safety and security, and curriculum updates.",
+        "connections": [
+          "Budget decisions and funding requirements",
+          "Staffing, evaluation, and role clarity",
+          "Safety, security, and scholar-support readiness",
+          "Alignment with curriculum and instructional priorities"
+        ],
+        "followThrough": "What does our department need to clarify, communicate, or complete so schools receive one consistent answer?",
+        "actionMap": [
+          {
+            "topic": "Budget and funding",
+            "teams": "State & Federal Programs · Extended Learning · Summer School",
+            "action": "Confirm the funding source, allowability, approval path, and deadline before related guidance reaches schools."
+          },
+          {
+            "topic": "Staffing and evaluation",
+            "teams": "All CSA department leaders",
+            "action": "Identify the effect on roles, supervision, workload, or implementation and take unresolved conflicts to the correct district office."
+          },
+          {
+            "topic": "Safety and scholar-support readiness",
+            "teams": "Community & Student Services · Behavioral Health · Health Services · Counseling · SEL",
+            "action": "Check that referral, response, communication, and handoff guidance say the same thing across departments."
+          },
+          {
+            "topic": "Curriculum and instructional priorities",
+            "teams": "Assessment & Evaluation · Extended Learning · Counseling · SEL",
+            "action": "Connect CSA supports to the instructional priority without creating a separate initiative for schools."
+          }
+        ],
+        "href": "https://docs.google.com/presentation/d/1OKJ-pnE4lvJDI27oBJTHVoBQr-hDo7er/edit?usp=drivesdk&ouid=101866085020746288335&rtpof=true&sd=true"
+      },
+      {
+        "date": "September 2026",
+        "title": "Leading the GRPS Way — September 2026",
+        "summary": "Principal learning covering Safe Routes, special education, monthly data review, MTSS, the data protocol, and the cell-phone policy.",
+        "connections": [
+          "Monthly data review and use of the data protocol",
+          "MTSS connections across academic, attendance, behavior, and SEL supports",
+          "Safe Routes, access, and scholar-support considerations",
+          "Consistent communication about special education and cell-phone guidance"
+        ],
+        "followThrough": "Where does this principal learning require CSA to adjust guidance, support, data review, or communication?",
+        "actionMap": [
+          {
+            "topic": "Monthly data review and data protocol",
+            "teams": "Assessment & Evaluation · State & Federal Programs",
+            "action": "Align definitions, data sources, review routines, and the decision schools are expected to make from the evidence."
+          },
+          {
+            "topic": "MTSS",
+            "teams": "SEL · Behavioral Health · Counseling · Community & Student Services · Health Services",
+            "action": "Clarify the support pathway, department role, handoff point, and evidence that will show whether the response helped."
+          },
+          {
+            "topic": "Safe Routes and attendance barriers",
+            "teams": "Community & Student Services · Family & Community Engagement · State & Federal Programs",
+            "action": "Coordinate barrier removal, family communication, attendance response, and the owner of the next contact."
+          },
+          {
+            "topic": "Special education and cell-phone guidance",
+            "teams": "All CSA departments supporting schools",
+            "action": "Reinforce the district message, avoid creating parallel guidance, and route policy questions to the responsible district office."
+          }
+        ],
+        "href": "https://docs.google.com/presentation/d/1RF1B3hwQRCLqzhdereq812NJc3yeLSuv/edit?usp=drivesdk&ouid=101866085020746288335&rtpof=true&sd=true"
+      }
+    ],
+    "cases": [
+      {
+        "id": "PRACTICE-01",
+        "title": "A Difficult Conversation",
+        "topic": "Begin Here",
+        "pages": 2,
+        "difficulty": "Introductory",
+        "connection": "Practice naming the decision, surfacing assumptions, and preparing for a direct leadership conversation.",
+        "source": "Supplied CSA file",
+        "access": "Supplied case · existing file access required",
+        "href": "https://csa-resource-center.melatkins2.chatgpt.site/case-a-difficult-conversation.pdf"
+      },
+      {
+        "id": "PEL-074",
+        "title": "Organizing for Family and Community Engagement in Baltimore City Public Schools",
+        "topic": "Family Engagement",
+        "pages": 37,
+        "difficulty": "Advanced",
+        "connection": "Examine how a district organizes family engagement, assigns authority, and connects central-office strategy to school practice.",
+        "href": "https://csa-resource-center.melatkins2.chatgpt.site/case-pel-074.pdf",
+        "access": "Supplied case · existing file access required"
+      },
+      {
+        "id": "PEL-001",
+        "title": "Bristol City Schools (BCS)",
+        "topic": "Strategy & Change",
+        "pages": 14,
+        "difficulty": "Intermediate",
+        "connection": "Examine how leaders build a coherent improvement strategy and keep people aligned through change.",
+        "source": "Supplied CSA file",
+        "access": "Supplied case · existing file access required",
+        "href": "https://csa-resource-center.melatkins2.chatgpt.site/case-pel-001.pdf"
+      },
+      {
+        "id": "PEL-002",
+        "title": "Compensation Reform at Denver Public Schools",
+        "topic": "People & Leadership",
+        "pages": 25,
+        "difficulty": "Advanced",
+        "connection": "Consider how incentives, stakeholder interests, and implementation choices shape workforce reform.",
+        "href": "https://csa-resource-center.melatkins2.chatgpt.site/case-pel-002.pdf",
+        "access": "Supplied case · existing file access required"
+      },
+      {
+        "id": "PEL-003",
+        "title": "Aligning Resources to Improve Student Achievement: San Diego City Schools (A)",
+        "topic": "Systems & Scale",
+        "pages": 29,
+        "difficulty": "Advanced",
+        "connection": "Connect resource allocation to strategy, student need, and evidence of results.",
+        "href": "https://csa-resource-center.melatkins2.chatgpt.site/case-pel-003.pdf",
+        "access": "Supplied case · existing file access required"
+      },
+      {
+        "id": "PEL-004",
+        "title": "Aligning Resources to Improve Student Achievement: San Diego City Schools (B)",
+        "topic": "Systems & Scale",
+        "pages": 7,
+        "difficulty": "Introductory",
+        "connection": "Revisit a resource decision after seeing what implementation produced.",
+        "href": "https://csa-resource-center.melatkins2.chatgpt.site/case-pel-004.pdf",
+        "access": "Supplied case · existing file access required"
+      },
+      {
+        "id": "PEL-005",
+        "title": "Pursuing Educational Equity at San Francisco Unified School District",
+        "topic": "Data & Equity",
+        "pages": 21,
+        "difficulty": "Intermediate",
+        "connection": "Test whether stated equity priorities are visible in decisions, implementation, and accountability.",
+        "href": "https://csa-resource-center.melatkins2.chatgpt.site/case-pel-005.pdf",
+        "access": "Supplied case · existing file access required"
+      },
+      {
+        "id": "PEL-006",
+        "title": "Long Beach Unified School District (A): Change That Leads to Improvement (1992–2002)",
+        "topic": "Strategy & Change",
+        "pages": 22,
+        "difficulty": "Intermediate",
+        "connection": "Study the conditions that allow improvement work to become a durable system rather than a short-term initiative.",
+        "href": "https://csa-resource-center.melatkins2.chatgpt.site/case-pel-006.pdf",
+        "access": "Supplied case · existing file access required"
+      },
+      {
+        "id": "PEL-007",
+        "title": "Long Beach Unified School District (B): Working to Sustain Improvement (2002–2004)",
+        "topic": "Strategy & Change",
+        "pages": 19,
+        "difficulty": "Intermediate",
+        "connection": "Consider what leaders must protect, adapt, or stop when sustaining improvement.",
+        "href": "https://csa-resource-center.melatkins2.chatgpt.site/case-pel-007.pdf",
+        "access": "Supplied case · existing file access required"
+      },
+      {
+        "id": "PEL-008",
+        "title": "Learning to Manage with Data in Duval County Public Schools: Lake Shore Middle School (A)",
+        "topic": "Data & Equity",
+        "pages": 29,
+        "difficulty": "Advanced",
+        "connection": "Examine how data routines change adult practice and where support is needed before accountability can work.",
+        "href": "https://csa-resource-center.melatkins2.chatgpt.site/case-pel-008.pdf",
+        "access": "Supplied case · existing file access required"
+      },
+      {
+        "id": "PEL-009",
+        "title": "The Campaign for Human Capital at the School District of Philadelphia",
+        "topic": "People & Leadership",
+        "pages": 37,
+        "difficulty": "Advanced",
+        "connection": "Connect talent strategy, organizational capacity, and district priorities.",
+        "href": "https://csa-resource-center.melatkins2.chatgpt.site/case-pel-009.pdf",
+        "access": "Supplied case · existing file access required"
+      },
+      {
+        "id": "PEL-013",
+        "title": "Learning to Manage with Data in Duval County Public Schools: Lake Shore Middle School (B)",
+        "topic": "Data & Equity",
+        "pages": 5,
+        "difficulty": "Introductory",
+        "connection": "Use the follow-up to test an earlier data-use recommendation against new evidence.",
+        "href": "https://csa-resource-center.melatkins2.chatgpt.site/case-pel-013.pdf",
+        "access": "Supplied case · existing file access required"
+      },
+      {
+        "id": "PEL-024",
+        "title": "Staffing the Boston Public Schools",
+        "topic": "People & Leadership",
+        "pages": 30,
+        "difficulty": "Advanced",
+        "connection": "Consider how staffing timelines, rules, and ownership affect a district’s ability to meet student needs.",
+        "href": "https://csa-resource-center.melatkins2.chatgpt.site/case-pel-024.pdf",
+        "access": "Supplied case · existing file access required"
+      },
+      {
+        "id": "PEL-026",
+        "title": "New Leadership at Portland Public Schools",
+        "topic": "People & Leadership",
+        "pages": 31,
+        "difficulty": "Advanced",
+        "connection": "Examine entry strategy, trust, and early decisions when leading a complex public system.",
+        "href": "https://csa-resource-center.melatkins2.chatgpt.site/case-pel-026.pdf",
+        "access": "Supplied case · existing file access required"
+      },
+      {
+        "id": "PEL-027",
+        "title": "Memphis City Schools: The Next Generation of Principals",
+        "topic": "People & Leadership",
+        "pages": 21,
+        "difficulty": "Intermediate",
+        "connection": "Connect leadership development and succession planning to school improvement needs.",
+        "href": "https://csa-resource-center.melatkins2.chatgpt.site/case-pel-027.pdf",
+        "access": "Supplied case · existing file access required"
+      },
+      {
+        "id": "PEL-028",
+        "title": "Differentiated Treatment in Montgomery County Public Schools",
+        "topic": "Data & Equity",
+        "pages": 31,
+        "difficulty": "Advanced",
+        "connection": "Debate when differentiated support is equitable and what evidence should determine the response.",
+        "href": "https://csa-resource-center.melatkins2.chatgpt.site/case-pel-028.pdf",
+        "access": "Supplied case · existing file access required"
+      },
+      {
+        "id": "PEL-029",
+        "title": "Reinventing Human Resources at the School District of Philadelphia",
+        "topic": "People & Leadership",
+        "pages": 32,
+        "difficulty": "Advanced",
+        "connection": "Examine how a central department moves from transactions to strategic support.",
+        "href": "https://csa-resource-center.melatkins2.chatgpt.site/case-pel-029.pdf",
+        "access": "Supplied case · existing file access required"
+      },
+      {
+        "id": "PEL-030",
+        "title": "Meeting New Challenges at the Aldine Independent School District (A)",
+        "topic": "Strategy & Change",
+        "pages": 25,
+        "difficulty": "Advanced",
+        "connection": "Identify what a successful system must reconsider when its context and challenges change.",
+        "href": "https://csa-resource-center.melatkins2.chatgpt.site/case-pel-030.pdf",
+        "access": "Supplied case · existing file access required"
+      },
+      {
+        "id": "PEL-033",
+        "title": "Managing the Chicago Public Schools",
+        "topic": "Systems & Scale",
+        "pages": 29,
+        "difficulty": "Advanced",
+        "connection": "Examine governance, central-office roles, and the tradeoffs of managing a large district.",
+        "href": "https://csa-resource-center.melatkins2.chatgpt.site/case-pel-033.pdf",
+        "access": "Supplied case · existing file access required"
+      },
+      {
+        "id": "PEL-039",
+        "title": "The STAR Schools Initiative at the San Francisco Unified School District",
+        "topic": "Data & Equity",
+        "pages": 27,
+        "difficulty": "Advanced",
+        "connection": "Assess how targeted improvement support is designed, received, and monitored.",
+        "href": "https://csa-resource-center.melatkins2.chatgpt.site/case-pel-039.pdf",
+        "access": "Supplied case · existing file access required"
+      },
+      {
+        "id": "PEL-041",
+        "title": "Managing at Scale in the Long Beach Unified School District",
+        "topic": "Systems & Scale",
+        "pages": 23,
+        "difficulty": "Intermediate",
+        "connection": "Explore the routines and relationships needed to maintain coherence across a large organization.",
+        "href": "https://csa-resource-center.melatkins2.chatgpt.site/case-pel-041.pdf",
+        "access": "Supplied case · existing file access required"
+      },
+      {
+        "id": "PEL-043",
+        "title": "Race, Accountability, and the Achievement Gap (A)",
+        "topic": "Data & Equity",
+        "pages": 32,
+        "difficulty": "Advanced",
+        "connection": "Practice discussing race, evidence, accountability, and system responsibility without losing the decision.",
+        "href": "https://csa-resource-center.melatkins2.chatgpt.site/case-pel-043.pdf",
+        "access": "Supplied case · existing file access required"
+      },
+      {
+        "id": "PEL-044",
+        "title": "Race, Accountability, and the Achievement Gap (B)",
+        "topic": "Data & Equity",
+        "pages": 20,
+        "difficulty": "Intermediate",
+        "connection": "Test an equity response against additional evidence and competing interpretations.",
+        "href": "https://csa-resource-center.melatkins2.chatgpt.site/case-pel-044.pdf",
+        "access": "Supplied case · existing file access required"
+      },
+      {
+        "id": "PEL-047",
+        "title": "Using Data to Improve Instruction at the Mason School",
+        "topic": "Data & Equity",
+        "pages": 28,
+        "difficulty": "Advanced",
+        "connection": "Study how teams turn data into changes in practice rather than another reporting exercise.",
+        "href": "https://csa-resource-center.melatkins2.chatgpt.site/case-pel-047.pdf",
+        "access": "Supplied case · existing file access required"
+      },
+      {
+        "id": "PEL-053",
+        "title": "Managing Schools for High Performance: The Area Instruction Officer at Chicago Public Schools",
+        "topic": "Systems & Scale",
+        "pages": 24,
+        "difficulty": "Intermediate",
+        "connection": "Clarify how an intermediary leader balances support, challenge, consistency, and school context.",
+        "href": "https://csa-resource-center.melatkins2.chatgpt.site/case-pel-053.pdf",
+        "access": "Supplied case · existing file access required"
+      },
+      {
+        "id": "PEL-054",
+        "title": "Focusing on Results at the New York City Department of Education",
+        "topic": "Data & Equity",
+        "pages": 32,
+        "difficulty": "Advanced",
+        "connection": "Examine how goals, measures, operating routines, and accountability reinforce—or undermine—one another.",
+        "href": "https://csa-resource-center.melatkins2.chatgpt.site/case-pel-054.pdf",
+        "access": "Supplied case · existing file access required"
+      },
+      {
+        "id": "PEL-055",
+        "title": "Taking Human Resources Seriously in Minneapolis",
+        "topic": "People & Leadership",
+        "pages": 20,
+        "difficulty": "Intermediate",
+        "connection": "Consider what it takes to make human resources an accountable partner in district strategy.",
+        "href": "https://csa-resource-center.melatkins2.chatgpt.site/case-pel-055.pdf",
+        "access": "Supplied case · existing file access required"
+      },
+      {
+        "id": "PEL-061",
+        "title": "The Turn-Around at Highland Elementary School",
+        "topic": "Strategy & Change",
+        "pages": 28,
+        "difficulty": "Advanced",
+        "connection": "Weigh leadership, culture, instructional, and community choices in a school turnaround.",
+        "href": "https://csa-resource-center.melatkins2.chatgpt.site/case-pel-061.pdf",
+        "access": "Supplied case · existing file access required"
+      },
+      {
+        "id": "PEL-062",
+        "title": "The Parent Academy: Family Engagement in Miami-Dade County Public Schools",
+        "topic": "Family Engagement",
+        "pages": 21,
+        "difficulty": "Intermediate",
+        "connection": "Evaluate whether a family initiative is accessible, connected to learning, and built for meaningful participation.",
+        "href": "https://csa-resource-center.melatkins2.chatgpt.site/case-pel-062.pdf",
+        "access": "Supplied case · existing file access required"
+      },
+      {
+        "id": "PEL-063",
+        "title": "Baltimore City Public Schools: Implementing Bounded Autonomy",
+        "topic": "Systems & Scale",
+        "pages": 25,
+        "difficulty": "Advanced",
+        "connection": "Debate what should be standardized, what should remain local, and how the system knows the difference.",
+        "href": "https://csa-resource-center.melatkins2.chatgpt.site/case-pel-063.pdf",
+        "access": "Supplied case · existing file access required"
+      },
+      {
+        "id": "PEL-067",
+        "title": "Meeting New Challenges at the Aldine Independent School District (B)",
+        "topic": "Strategy & Change",
+        "pages": 6,
+        "difficulty": "Introductory",
+        "connection": "Use a short follow-up to reconsider an earlier change strategy.",
+        "href": "https://csa-resource-center.melatkins2.chatgpt.site/case-pel-067.pdf",
+        "access": "Supplied case · existing file access required"
+      },
+      {
+        "id": "PEL-068",
+        "title": "Central Falls High School",
+        "topic": "Strategy & Change",
+        "pages": 33,
+        "difficulty": "Advanced",
+        "connection": "Examine authority, labor, community trust, and urgency in a high-stakes improvement decision.",
+        "href": "https://csa-resource-center.melatkins2.chatgpt.site/case-pel-068.pdf",
+        "access": "Supplied case · existing file access required"
+      },
+      {
+        "id": "PEL-070",
+        "title": "Baltimore City Public Schools: Implementing Bounded Autonomy (B)",
+        "topic": "Systems & Scale",
+        "pages": 6,
+        "difficulty": "Introductory",
+        "connection": "Test the consequences of a system design decision using new implementation evidence.",
+        "href": "https://csa-resource-center.melatkins2.chatgpt.site/case-pel-070.pdf",
+        "access": "Supplied case · existing file access required"
+      },
+      {
+        "id": "PEL-071",
+        "title": "Career Pathways, Performance Pay, and Peer-review Promotion in Baltimore City Public Schools",
+        "topic": "People & Leadership",
+        "pages": 28,
+        "difficulty": "Advanced",
+        "connection": "Consider how career pathways, performance expectations, and peer review affect workforce culture.",
+        "href": "https://csa-resource-center.melatkins2.chatgpt.site/case-pel-071.pdf",
+        "access": "Supplied case · existing file access required"
+      },
+      {
+        "id": "PEL-073",
+        "title": "Between Compliance and Support: The Role of the Commonwealth in District Takeovers",
+        "topic": "Systems & Scale",
+        "pages": 26,
+        "difficulty": "Advanced",
+        "connection": "Examine where oversight, support, authority, and local ownership should sit in a stressed system.",
+        "href": "https://csa-resource-center.melatkins2.chatgpt.site/case-pel-073.pdf",
+        "access": "Supplied case · existing file access required"
+      },
+      {
+        "id": "PEL-076",
+        "title": "Denver Public Schools 2015: Innovation and Performance?",
+        "topic": "Systems & Scale",
+        "pages": 32,
+        "difficulty": "Advanced",
+        "connection": "Assess whether innovation structures produce equitable access, coherent support, and better results.",
+        "href": "https://csa-resource-center.melatkins2.chatgpt.site/case-pel-076.pdf",
+        "access": "Supplied case · existing file access required"
+      },
+      {
+        "id": "PEL-079",
+        "title": "Uncommon Schools (A): A Network of Networks",
+        "topic": "Systems & Scale",
+        "pages": 27,
+        "difficulty": "Advanced",
+        "connection": "Study how a growing network balances common expectations with local leadership.",
+        "href": "https://csa-resource-center.melatkins2.chatgpt.site/case-pel-079.pdf",
+        "access": "Supplied case · existing file access required"
+      },
+      {
+        "id": "PEL-080",
+        "title": "Uncommon Schools (B): Seeking Excellence at Scale through Standardized Practice",
+        "topic": "Systems & Scale",
+        "pages": 18,
+        "difficulty": "Intermediate",
+        "connection": "Debate when standardization strengthens quality and when it constrains learning or adaptation.",
+        "href": "https://csa-resource-center.melatkins2.chatgpt.site/case-pel-080.pdf",
+        "access": "Supplied case · existing file access required"
+      },
+      {
+        "id": "PEL-085",
+        "title": "Decentralization in Clark County School District: Strategy is Everyone’s Job",
+        "topic": "Systems & Scale",
+        "pages": 25,
+        "difficulty": "Advanced",
+        "connection": "Clarify decision rights, capacity, and accountability in a decentralized system.",
+        "href": "https://csa-resource-center.melatkins2.chatgpt.site/case-pel-085.pdf",
+        "access": "Supplied case · existing file access required"
+      },
+      {
+        "id": "HBS-01",
+        "title": "Taran Swan at Nickelodeon Latin America (A)",
+        "topic": "People & Leadership",
+        "pages": 25,
+        "difficulty": "Intermediate",
+        "connection": "Examine team culture, influence, execution, and leadership under pressure in a setting outside education.",
+        "source": "Harvard Business Publishing",
+        "access": "Purchase one licensed copy per participant",
+        "href": "https://store.hbr.org/product/taran-swan-at-nickelodeon-latin-america-a/400036"
+      },
+      {
+        "id": "HBS-02",
+        "title": "Federal Bureau of Investigation, 2001",
+        "topic": "Strategy & Change",
+        "pages": 14,
+        "difficulty": "Advanced",
+        "connection": "Examine organizational identity, competing missions, culture, resources, and large-scale change after 9/11.",
+        "source": "Harvard Business Publishing",
+        "access": "Purchase one licensed copy per participant",
+        "href": "https://store.hbr.org/product/federal-bureau-of-investigation-2001-abridged/710450"
+      },
+      {
+        "id": "HKS-1673",
+        "title": "The Challenge of Multi-Agency Collaboration: Launching a Large-Scale Youth Development Project in Hartford",
+        "topic": "Systems & Scale",
+        "pages": 42,
+        "difficulty": "Advanced",
+        "connection": "Study what breaks down when schools, government, funders, and service providers move from a shared proposal to implementation—directly relevant to CSA partnership and handoff work.",
+        "source": "Harvard Kennedy School",
+        "access": "Purchase per participant · teaching plan with Educator Access",
+        "href": "https://case.hks.harvard.edu/the-challenge-of-multi-agency-collaboration-launching-a-large-scale-youth-development-project-in-hartford/"
+      },
+      {
+        "id": "HKS-1957",
+        "title": "Michelle Rhee and the Washington, D.C. Public Schools",
+        "topic": "Strategy & Change",
+        "pages": 28,
+        "difficulty": "Advanced",
+        "connection": "Examine urgency, stakeholder trust, accountability, labor relations, and the consequences of a leader’s change strategy.",
+        "source": "Harvard Kennedy School",
+        "access": "Purchase per participant · teaching plan with Educator Access",
+        "href": "https://case.hks.harvard.edu/michelle-rhee-and-the-washington-d-c-public-schools/"
+      },
+      {
+        "id": "HKS-2196",
+        "title": "Pratham: The Challenge of Converting Schooling to Learning in India",
+        "topic": "Data & Equity",
+        "pages": 7,
+        "difficulty": "Intermediate",
+        "connection": "Explore how evidence, intervention design, government partnership, and scale come together around a persistent learning problem.",
+        "source": "Harvard Kennedy School",
+        "access": "Purchase per participant · multimedia · teaching plan with Educator Access",
+        "href": "https://case.hks.harvard.edu/pratham-the-challenge-of-converting-schooling-to-learning-in-india/"
+      },
+      {
+        "id": "HKS-2128",
+        "title": "Mothers of Rotterdam: Scaling a Social Services Program in the Netherlands",
+        "topic": "Systems & Scale",
+        "pages": 21,
+        "difficulty": "Intermediate",
+        "connection": "Ask when a promising support is ready to scale, what evidence is sufficient, and how to preserve quality as roles become more formal.",
+        "source": "Harvard Kennedy School",
+        "access": "Free case · teaching plan with Educator Access · confirm distribution terms",
+        "href": "https://case.hks.harvard.edu/mothers-of-rotterdam-scaling-a-social-services-program-in-the-netherlands/"
+      },
+      {
+        "id": "HKS-2115",
+        "title": "Cuna Más: Peru’s Early Childhood Program Struggles to Maintain Quality as It Scales Up",
+        "topic": "Family Engagement",
+        "pages": 18,
+        "difficulty": "Intermediate",
+        "connection": "Examine service quality, family trust, political pressure, implementation capacity, and equitable reach while a support expands.",
+        "source": "Harvard Kennedy School",
+        "access": "Free case · confirm distribution terms",
+        "href": "https://case.hks.harvard.edu/cuna-mas-perus-early-childhood-program-struggles-to-maintain-quality-as-it-scales-up/"
+      },
+      {
+        "id": "LPI-OAKLAND",
+        "title": "District Support for Community Schools: The Case of Oakland Unified School District",
+        "topic": "Family Engagement",
+        "pages": 0,
+        "difficulty": "Intermediate",
+        "connection": "Study district infrastructure for integrated supports, partnerships, attendance, health access, family engagement, and school-level coordination—an especially strong CSA transfer case.",
+        "source": "Learning Policy Institute",
+        "access": "Open web brief · CC BY-NC 4.0",
+        "href": "https://learningpolicyinstitute.org/product/ousd-community-schools-district-support-brief"
+      }
+    ],
+    "priorities": [
+      {
+        "title": "Make our high-priority work clear and usable",
+        "focus": "CSA written processes and SOPs",
+        "why": "Staff need to find the process, understand who owns it, and carry out the work consistently.",
+        "next": "Department leaders: identify the work that most needs to be documented or clarified. Start with an existing document or a real example of how the work gets done.",
+        "bringBack": "A usable draft, the person responsible for maintaining it, and any decision needed to move it forward.",
+        "resourceTitle": "SOPs & Written Processes",
+        "href": "https://melatkins2-ops.github.io/grps-written-processes/"
+      },
+      {
+        "title": "Use our data to decide what needs attention",
+        "focus": "Attendance · Health Services · SEL/PBIS+ · Assessment & Evaluation",
+        "why": "Our reports show progress and areas where we need to understand the experience of schools and scholars more clearly.",
+        "next": "Department leaders: bring forward one meaningful result, the context needed to understand it, and the question it raises for our work. Look at implementation alongside outcomes.",
+        "bringBack": "What we learned, what we will do next, and how we will check whether it helped.",
+        "resourceTitle": "Review department data and reports",
+        "href": "#departments"
+      },
+      {
+        "title": "Use the summer findings to shape the next design",
+        "focus": "Summer School · Extended Learning · State & Federal Programs · Assessment & Evaluation",
+        "why": "The summer evaluation should help us make decisions about participation, attendance, learning, and high school credit recovery.",
+        "next": "Review the 2026 draft evaluation alongside the prior evaluation. Identify which findings should inform planning and which questions still need an answer.",
+        "bringBack": "The design decisions the evidence supports, the departments that need to be involved, and what must be resolved before launch.",
+        "resourceTitle": "Open the 2026 draft evaluation",
+        "href": "https://csa-resource-center.melatkins2.chatgpt.site/ignite-summer-program-evaluation-report-2026-draft.pdf"
+      }
+    ],
+    "priorityReviewed": "October 19, 2026"
+  },
+  "highlights": [
+    {
+      "departments": [
+        "State & Federal Programs"
+      ],
+      "label": "State & Federal Programs · Attendance",
+      "metric": "436 fewer scholars",
+      "title": "Attendance moving in the right direction",
+      "period": "School year 2025–26",
+      "finding": "436 fewer scholars were chronically absent than in 2024–25. Attendance improved at 30 schools—eight more schools than the previous year.",
+      "meaning": "Progress across schools gives us something to build on as we continue the Strive for Less Than 5 work.",
+      "context": "The report still identifies 5,247 chronically absent scholars and a district rate of 40.0%. These figures do not establish the effect of any one intervention.",
+      "source": "Chronic Absenteeism: End of Year Report · 2025–26 · page 1",
+      "reviewed": "2026-10-19",
+      "href": "https://melatkins2-ops.github.io/grps-csa-resource-center/grps-chronic-absenteeism-2025-26.pdf"
+    },
+    {
+      "departments": [
+        "Health Services"
+      ],
+      "label": "Health Services",
+      "metric": "90.3% returned to class",
+      "title": "Helping scholars stay in school",
+      "period": "School year 2025–26",
+      "finding": "47,859 of 53,010 recorded dispositions were returns to class.",
+      "meaning": "School health care supports scholars in returning to learning.",
+      "context": "Recorded dispositions, not unique scholars. Uses the district disposition table on printed page 5 (PDF page 8). The summary narrative cites a different denominator.",
+      "source": "GRPS 2025–26 School Health Advocacy Report · printed page 5",
+      "reviewed": "2026-10-19"
+    },
+    {
+      "departments": [
+        "Summer School"
+      ],
+      "label": "Summer School",
+      "metric": "83 + 64.5 credits",
+      "title": "Two routes toward graduation",
+      "period": "Ignite · Summer 2025",
+      "finding": "High school scholars earned 83 credits in person and 64.5 credits through E2020.",
+      "meaning": "Summer learning helped scholars make progress toward graduation.",
+      "context": "Credit totals, not a count of unique scholars.",
+      "source": "Final Ignite 2025 evaluation · page 13",
+      "href": "https://csa-resource-center.melatkins2.chatgpt.site/ignite-summer-program-evaluation-2025.pdf#page=13",
+      "reviewed": "2026-10-19"
+    },
+    {
+      "departments": [
+        "Counseling",
+        "Assessment & Evaluation"
+      ],
+      "label": "Counseling · Assessment & Evaluation",
+      "metric": "83.22%",
+      "title": "More scholars graduating on time",
+      "period": "Class of 2025 · four-year cohort",
+      "finding": "The district graduation rate increased from 82.53% in 2024 to 83.22% in 2025: a gain of 0.69 percentage points.",
+      "meaning": "A shared district result to build on through scholar planning, support, and review of school and scholar-group patterns.",
+      "context": "Shared district outcome; not attributed to one department.",
+      "source": "GRPS graduation-rate release · MDE data",
+      "href": "https://grps.org/pub/stories/view/grps-graduation-rates-continue-historic-rise",
+      "reviewed": "2026-10-19"
+    },
+    {
+      "departments": [
+        "Social Emotional Learning"
+      ],
+      "label": "Social Emotional Learning · PBIS+",
+      "metric": "8 schools at or above 70%",
+      "title": "Building stronger Tier 1 practices",
+      "period": "School year 2025–26",
+      "finding": "Eight schools reached at least 70% on the Tier 1 Tiered Fidelity Inventory. The report records 27 completed inventories and a 60% average implementation score.",
+      "meaning": "Use the TFI to identify the practices working in schools and the support each PBIS+ team needs next.",
+      "context": "The school table supports eight scores at or above 70%; five are strictly above 70%. This measures implementation fidelity, not scholar outcomes. The report describes associations with attendance, behavior, and climate without establishing causation.",
+      "source": "PBIS+ Installation Update · Tiered Fidelity Inventory Impact Report · pages 1–2",
+      "reviewed": "2026-10-19",
+      "href": "https://melatkins2-ops.github.io/grps-csa-resource-center/grps-tiered-fidelity-inventory-2025-26.pdf"
+    }
+  ]
+}
 </script>
 </body></html>
