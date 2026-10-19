@@ -70,11 +70,9 @@ assert.equal(data.leadership.decks[0].date,'October 2026');
 assert.match(data.leadership.decks[0].href,/^https:\/\/grpublicschools-my\.sharepoint\.com\//);
 
 assert.equal(data.highlights.length,5);
-assert.equal(run("$('highlight-list').children.length"),5);
+assert.ok(!html.includes('id="positive-highlights"'));
 run("renderDepartment('Summer School');");
 assert.ok(run("$('department-detail').children.some(x=>x.className==='department-highlight')"));
-run("location.hash='#leadership';showView();");assert.equal(run("$('positive-highlights').hidden"),true);
-run("location.hash='#home';showView();");assert.equal(run("$('positive-highlights').hidden"),false);
 for(const h of data.highlights){assert.ok(h.metric&&h.period&&h.source&&h.reviewed&&h.context);if(h.href)assert.match(h.href,/^https:\/\//);}
 console.log('PASS: sourced positive highlights, department placement, dates, context, and view visibility.');
 

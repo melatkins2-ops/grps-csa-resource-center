@@ -34,7 +34,6 @@
 <a href="https://melatkins2-ops.github.io/grps-written-processes/" target="_blank" rel="noopener"><span>04</span><strong>Written processes &amp; SOPs</strong><small>Find the process and check its owner and review status.</small></a>
 <a href="#leadership"><span>05</span><strong>Leadership &amp; case studies</strong><small>Open leadership expectations, principal learning, and case-study materials.</small></a>
 </div></section>
-<section id="positive-highlights" class="positive-highlights" aria-labelledby="positive-heading"><span class="eyebrow">What’s working across CSA</span><h2 id="positive-heading">Progress worth building on.</h2><div id="highlight-list" class="highlight-list"></div></section>
 <section class="home-updates" id="updates"><span class="eyebrow">CSA Updates</span><h2>Resources to know.</h2>
 <article class="update-row"><div><h3>Title I NOW</h3><p>Open current Title I priorities, required actions, and the roadmap.</p></div><a href="https://melatkins2-ops.github.io/grps-title-i-now/" target="_blank" rel="noopener">Open Title I NOW ↗︎</a></article>
 <article class="update-row"><div><h3>Summer 2026 draft evaluation</h3><p>Review the draft findings and recommendations for summer planning. Internal CSA access is required.</p></div><a href="https://csa-resource-center.melatkins2.chatgpt.site/ignite-summer-program-evaluation-report-2026-draft.pdf" target="_blank" rel="noopener">Open draft report ↗︎</a></article>
@@ -70,7 +69,7 @@ const matches=(text,query)=>normalize(query).split(/\s+/).filter(Boolean).every(
 function showView(){
  const hash=location.hash.slice(1),view=hash.startsWith('leadership')?'leadership':['resources','departments'].includes(hash)?hash:'home';
  if(view==='leadership')showLeadership(hash.split('/')[1]||'expectations');
- for(const id of ['home','positive-highlights','updates','resources','departments','leadership'])$(id).hidden=!(id===view||(view==='home'&&['updates','positive-highlights'].includes(id)));
+ for(const id of ['home','updates','resources','departments','leadership'])$(id).hidden=!(id===view||(view==='home'&&id==='updates'));
  for(const anchor of document.querySelectorAll('nav a[href^="#"]'))anchor.setAttribute('aria-current',anchor.getAttribute('href')==='#'+view?'page':'false');
  if(hash==='updates')$('updates').scrollIntoView();else window.scrollTo({top:0});
 }
@@ -107,7 +106,7 @@ function renderDepartment(name){
  if(d.connects?.length)section.append(node('p','Works across CSA with: '+d.connects.join(' · ')));
 }
 function start(data){
- state.departments=data.departments;state.resources=data.resources;state.highlights=data.highlights||[];for(const h of state.highlights)$('highlight-list').append(highlightNode(h));
+ state.departments=data.departments;state.resources=data.resources;state.highlights=data.highlights||[];
  for(const name of [...data.departments.map(d=>d.name),'Across CSA']){
   const option=node('option',name);option.value=name;$('department').append(option);
  }
