@@ -19,6 +19,7 @@ const script=html.match(/<script>([\s\S]*?)<\/script>/)[1].split("fetch('./data.
 const context=vm.createContext({document,data,location:{hash:''},window:{addEventListener(){},scrollTo(){}}});
 vm.runInContext(script+';start(data);',context);
 const run=code=>vm.runInContext(code,context);
+vm.runInContext("function descendants(n){return [n,...n.children.flatMap(descendants)];}",context);
 assert.equal(data.departments.length,10);
 assert.equal(document.getElementById('department-list').children.length,10);
 assert.equal(run("state.resources.length"),data.resources.length);
@@ -74,7 +75,7 @@ assert.match(data.leadership.decks[0].href,/^https:\/\/grpublicschools-my\.share
 assert.equal(data.highlights.length,5);
 assert.ok(!html.includes('id="positive-highlights"'));
 run("renderDepartment('Summer School');");
-assert.ok(run("$('department-detail').children.some(x=>x.className==='department-highlight')"));
+assert.ok(run("descendants($('department-detail')).some(x=>x.className==='department-highlight')"));
 for(const h of data.highlights){assert.ok(h.metric&&h.period&&h.source&&h.reviewed&&h.context);if(h.href)assert.match(h.href,/^https:\/\//);}
 console.log('PASS: sourced positive highlights, department placement, dates, context, and view visibility.');
 
@@ -82,7 +83,7 @@ assert.equal(data.highlights[0].metric,'436 fewer scholars');
 assert.ok(data.resources.some(r=>r.title.includes('Chronic Absenteeism: End of Year Report')&&r.report));
 
 assert.equal(data.resources.filter(r=>r.report).length,3);
-for(const name of ["State & Federal Programs","Social Emotional Learning"]){run("renderDepartment("+JSON.stringify(name)+");");assert.ok(run("$('department-detail').children.some(x=>x.textContent==='Department reports')"));}
+for(const name of ["State & Federal Programs","Social Emotional Learning"]){run("renderDepartment("+JSON.stringify(name)+");");assert.ok(run("descendants($('department-detail')).some(x=>x.textContent==='Resources for this work')"));}
 // Leadership connections: panels, real department data, and direct resource paths.
 assert.equal(data.leadership.priorities.length,3);
 assert.equal(run("$('priority-list').children.length"),3);
@@ -104,3 +105,15 @@ assert.ok(!html.includes('Open the complete leadership guide'));
 assert.ok(data.leadership.decks[0].discussionStatus.includes('not yet been summarized'));
 assert.ok(data.leadership.priorities.every(p=>p.href&&p.next&&p.bringBack));
 console.log('PASS: 3 dated CSA priorities, 10 department spotlights with direct resources and profile navigation, all 6 leadership panels, revised expectations, and explicit October slide-review limits.');
+
+for(const d of data.departments){
+ run("$('department-list').value="+JSON.stringify(d.name)+";$('department-list').events.change();");
+ assert.equal(run('state.department'),d.name);
+ assert.equal(run("$('department-detail').children[0].children[0].textContent"),d.name);
+ const count=data.resources.filter(r=>r.department===d.name).length;
+ assert.equal(run("descendants($('department-detail')).filter(x=>x.className==='dept-resource').length"),count);
+ assert.equal(run("descendants($('department-detail')).filter(x=>x.className==='department-highlight').length"),data.highlights.filter(h=>h.departments.includes(d.name)).length);
+}
+assert.ok(html.includes('<select id="department-list">'));
+assert.ok(!html.includes('class="dept-shell"'));
+console.log('PASS: 10 selectable department profiles, all direct resource destinations, collapsed additional resources, responsive profile layout, and compact department-only evidence.');
