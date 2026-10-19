@@ -12,7 +12,7 @@ Run `node verify.mjs` to check resource navigation, filters, case-to-guide selec
 
 ## Document access
 
-Document links open the individual file at its existing Google Drive, document host, or publisher location. No supplied case PDFs, licensed readings, draft evaluations, or Word documents are copied into this public repository. Existing file access and publisher terms still apply. The hub no longer sends staff to a second CSA homepage to find Leadership content.
+Document links open the individual file at its existing Google Drive, document host, or publisher location. Only three reports reviewed for public sharing are included: the 2025–26 attendance report, the TFI report, and the July 2025 MTSS planning document with user-approved cover photos. The full Health Advocacy report is excluded because school-level small medical counts could identify scholars. Supplied case PDFs, licensed readings, draft evaluations, and Word documents remain at their existing locations. Existing file access and publisher terms still apply. The hub no longer sends staff to a second CSA homepage to find Leadership content.
 
 ## Verification limits
 

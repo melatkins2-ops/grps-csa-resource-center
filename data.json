@@ -797,6 +797,33 @@
       "status": "Current district resource",
       "href": "https://parents.grps.org/school-info/",
       "restricted": false
+    },
+    {
+      "title": "Chronic Absenteeism: End of Year Report — 2025–26",
+      "department": "State & Federal Programs",
+      "description": "Review district attendance results, grade-band patterns, the attendance Community of Practice, and professional learning. Two-page report.",
+      "status": "2025–26 report",
+      "href": "https://melatkins2-ops.github.io/grps-csa-resource-center/grps-chronic-absenteeism-2025-26.pdf",
+      "restricted": false,
+      "report": true
+    },
+    {
+      "title": "PBIS+ Installation Update — Tiered Fidelity Inventory",
+      "department": "Social Emotional Learning",
+      "description": "Review Tier 1 implementation results and 2024–25 / 2025–26 school comparisons. The table shows eight schools at or above 70%. Two-page report.",
+      "status": "2025–26 report",
+      "href": "https://melatkins2-ops.github.io/grps-csa-resource-center/grps-tiered-fidelity-inventory-2025-26.pdf",
+      "restricted": false,
+      "report": true
+    },
+    {
+      "title": "Forecasting MTSS in Grand Rapids Public Schools",
+      "department": "Social Emotional Learning",
+      "description": "July 2025 planning document covering MTSS installation, department connections, school teams, and progress monitoring. Proposed structures and timelines are historical planning guidance. Original report with approved cover photos. 21 pages.",
+      "status": "July 2025 planning document",
+      "href": "https://melatkins2-ops.github.io/grps-csa-resource-center/forecasting-mtss-grps-july-2025.pdf",
+      "restricted": false,
+      "report": true
     }
   ],
   "leadership": {
@@ -1402,7 +1429,8 @@
       "meaning": "Progress across schools gives us something to build on as we continue the Strive for Less Than 5 work.",
       "context": "The report still identifies 5,247 chronically absent scholars and a district rate of 40.0%. These figures do not establish the effect of any one intervention.",
       "source": "Chronic Absenteeism: End of Year Report · 2025–26 · page 1",
-      "reviewed": "2026-10-19"
+      "reviewed": "2026-10-19",
+      "href": "https://melatkins2-ops.github.io/grps-csa-resource-center/grps-chronic-absenteeism-2025-26.pdf"
     },
     {
       "departments": [
@@ -1461,7 +1489,8 @@
       "meaning": "Use the TFI to identify the practices working in schools and the support each PBIS+ team needs next.",
       "context": "The school table supports eight scores at or above 70%; five are strictly above 70%. This measures implementation fidelity, not scholar outcomes. The report describes associations with attendance, behavior, and climate without establishing causation.",
       "source": "PBIS+ Installation Update · Tiered Fidelity Inventory Impact Report · pages 1–2",
-      "reviewed": "2026-10-19"
+      "reviewed": "2026-10-19",
+      "href": "https://melatkins2-ops.github.io/grps-csa-resource-center/grps-tiered-fidelity-inventory-2025-26.pdf"
     }
   ]
 }

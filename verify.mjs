@@ -46,7 +46,9 @@ run("location.hash='#departments';showView();");
 assert.equal(run("$('departments').hidden"),false);
 run("location.hash='#home';showView();");
 assert.equal(run("$('home').hidden"),false);
-assert.ok(!fs.readdirSync(new URL('.',import.meta.url)).some(x=>/\.(pdf|docx)$/i.test(x)));
+const approvedReports=['forecasting-mtss-grps-july-2025.pdf','grps-chronic-absenteeism-2025-26.pdf','grps-tiered-fidelity-inventory-2025-26.pdf'];
+assert.deepEqual(fs.readdirSync(new URL('.',import.meta.url)).filter(x=>/\.(pdf|docx)$/i.test(x)).sort(),approvedReports.sort());
+for(const name of approvedReports)assert.equal(fs.readFileSync(new URL('./'+name,import.meta.url)).subarray(0,5).toString(),'%PDF-');
 console.log('PASS: 10 department profiles, '+data.resources.length+' unique links, resource search, filters, reset, department selection, and protected-file exclusions.');
 assert.equal(data.leadership.expectations.length,6);
 assert.equal(data.leadership.decks.length,3);
@@ -77,4 +79,7 @@ for(const h of data.highlights){assert.ok(h.metric&&h.period&&h.source&&h.review
 console.log('PASS: sourced positive highlights, department placement, dates, context, and view visibility.');
 
 assert.equal(data.highlights[0].metric,'436 fewer scholars');
-assert.ok(!data.resources.some(r=>r.title.includes('Chronic Absenteeism: End of Year Report')));
+assert.ok(data.resources.some(r=>r.title.includes('Chronic Absenteeism: End of Year Report')&&r.report));
+
+assert.equal(data.resources.filter(r=>r.report).length,3);
+for(const name of ["State & Federal Programs","Social Emotional Learning"]){run("renderDepartment("+JSON.stringify(name)+");");assert.ok(run("$('department-detail').children.some(x=>x.textContent==='Department reports')"));}
