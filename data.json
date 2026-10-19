@@ -1388,5 +1388,38 @@
         "href": "https://learningpolicyinstitute.org/product/ousd-community-schools-district-support-brief"
       }
     ]
-  }
+  },
+  "highlights": [
+    {
+      "departments": [
+        "Summer School"
+      ],
+      "label": "Summer School",
+      "metric": "83 + 64.5 credits",
+      "title": "Two routes toward graduation",
+      "period": "Ignite · Summer 2025",
+      "finding": "High school scholars earned 83 credits in person and 64.5 credits through E2020.",
+      "meaning": "Summer learning helped scholars make progress toward graduation.",
+      "context": "Credit totals, not a count of unique scholars.",
+      "source": "Final Ignite 2025 evaluation · page 13",
+      "href": "https://csa-resource-center.melatkins2.chatgpt.site/ignite-summer-program-evaluation-2025.pdf#page=13",
+      "reviewed": "2026-10-19"
+    },
+    {
+      "departments": [
+        "Counseling",
+        "Assessment & Evaluation"
+      ],
+      "label": "Counseling · Assessment & Evaluation",
+      "metric": "83.22%",
+      "title": "More scholars graduating on time",
+      "period": "Class of 2025 · four-year cohort",
+      "finding": "The district graduation rate increased from 82.53% in 2024 to 83.22% in 2025: a gain of 0.69 percentage points.",
+      "meaning": "A shared district result to build on through scholar planning, support, and review of school and scholar-group patterns.",
+      "context": "Shared district outcome; not attributed to one department.",
+      "source": "GRPS graduation-rate release · MDE data",
+      "href": "https://grps.org/pub/stories/view/grps-graduation-rates-continue-historic-rise",
+      "reviewed": "2026-10-19"
+    }
+  ]
 }

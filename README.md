@@ -17,3 +17,7 @@ Document links open the individual file at its existing Google Drive, document h
 ## Verification limits
 
 Automated checks do not prove access to every restricted document or replace testing in iPhone Safari. Confirm file permissions with an intended CSA reader before broad distribution.
+
+## Positive department highlights
+
+`data.json` contains dated highlights with source links, reporting periods, department connections, and limits on interpretation. The homepage shows a short selection; relevant department profiles show the same evidence. Add only verified results. Distinguish activity from outcomes, counts from unique people, and shared district results from department attribution. Do not publish unapproved draft findings or identifiable scholar data. Current seed highlights use the final Ignite 2025 evaluation and the official GRPS Class of 2025 graduation-rate release.
