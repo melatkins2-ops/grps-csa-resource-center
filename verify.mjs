@@ -83,3 +83,24 @@ assert.ok(data.resources.some(r=>r.title.includes('Chronic Absenteeism: End of Y
 
 assert.equal(data.resources.filter(r=>r.report).length,3);
 for(const name of ["State & Federal Programs","Social Emotional Learning"]){run("renderDepartment("+JSON.stringify(name)+");");assert.ok(run("$('department-detail').children.some(x=>x.textContent==='Department reports')"));}
+// Leadership connections: panels, real department data, and direct resource paths.
+assert.equal(data.leadership.priorities.length,3);
+assert.equal(run("$('priority-list').children.length"),3);
+assert.equal(run("$('spotlight-department').children.length"),10);
+for(const name of ['expectations','priorities','spotlights','presentations','cases','facilitation']){
+ run("showLeadership("+JSON.stringify(name)+");");
+ assert.equal(run("$('lead-"+name+"').hidden"),false);
+}
+for(const d of data.departments){
+ run("$('spotlight-department').value="+JSON.stringify(d.name)+";renderSpotlight();");
+ assert.equal(run("$('spotlight-content').children[0].textContent"),d.name);
+ assert.equal(run("$('spotlight-content').children.filter(x=>x.className==='spotlight-prompt').length"),4);
+ run("$('spotlight-content').children.at(-1).events.click();");
+ assert.equal(run('state.department'),d.name);
+ assert.equal(context.location.hash,'departments');
+}
+assert.ok(!data.leadership.expectations.some(([t])=>t==='Bring a recommendation'));
+assert.ok(!html.includes('Open the complete leadership guide'));
+assert.ok(data.leadership.decks[0].discussionStatus.includes('not yet been summarized'));
+assert.ok(data.leadership.priorities.every(p=>p.href&&p.next&&p.bringBack));
+console.log('PASS: 3 dated CSA priorities, 10 department spotlights with direct resources and profile navigation, all 6 leadership panels, revised expectations, and explicit October slide-review limits.');
