@@ -2,7 +2,7 @@
 
 GRPS Community & Student Affairs resource center for the CSA Leadership Team and CSA staff.
 
-The GitHub Pages site contains Home, resource search and department filters, ten department profiles, and Leadership. Leadership includes six operating expectations, two Leading the GRPS Way presentations, a searchable 47-entry case library, and a case-selectable facilitator guide with copy support. The SOP Center opens the existing written-process library directly.
+The GitHub Pages site contains Home, resource search and department filters, ten department profiles, and Leadership. Leadership includes six operating expectations, three Leading the GRPS Way presentations, a searchable 47-entry case library, and a case-selectable facilitator guide with copy support. The SOP Center opens the existing written-process library directly.
 
 ## Update
 

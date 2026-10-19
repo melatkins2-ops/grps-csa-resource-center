@@ -49,7 +49,7 @@ assert.equal(run("$('home').hidden"),false);
 assert.ok(!fs.readdirSync(new URL('.',import.meta.url)).some(x=>/\.(pdf|docx)$/i.test(x)));
 console.log('PASS: 10 department profiles, '+data.resources.length+' unique links, resource search, filters, reset, department selection, and protected-file exclusions.');
 assert.equal(data.leadership.expectations.length,6);
-assert.equal(data.leadership.decks.length,2);
+assert.equal(data.leadership.decks.length,3);
 assert.equal(data.leadership.cases.length,47);
 assert.equal(run("$('case-list').children.length"),47);
 run("$('case-search').value='Federal Bureau';renderCases();");
@@ -64,4 +64,7 @@ assert.match(run('guideText()'),/55–60/);
 assert.ok(!html.includes('Open internal CSA hub')&&!html.includes('Open the internal CSA hub'));
 assert.ok(!data.resources.some(r=>r.href==='https://csa-resource-center.melatkins2.chatgpt.site'));
 for(const c of data.leadership.cases){assert.match(c.href,/^https:\/\//);assert.ok(c.title&&c.access);}
-console.log('PASS: 47 case entries, topic and title filters, case-to-guide selection, full facilitator run sheet, 6 expectations, 2 decks, and no duplicate hub links.');
+console.log('PASS: 47 case entries, topic and title filters, case-to-guide selection, full facilitator run sheet, 6 expectations, 3 decks, and no duplicate hub links.');
+
+assert.equal(data.leadership.decks[0].date,'October 2026');
+assert.match(data.leadership.decks[0].href,/^https:\/\/grpublicschools-my\.sharepoint\.com\//);
