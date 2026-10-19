@@ -1392,6 +1392,34 @@
   "highlights": [
     {
       "departments": [
+        "State & Federal Programs"
+      ],
+      "label": "State & Federal Programs · Attendance",
+      "metric": "436 fewer scholars",
+      "title": "Attendance moving in the right direction",
+      "period": "School year 2025–26",
+      "finding": "436 fewer scholars were chronically absent than in 2024–25. Attendance improved at 30 schools—eight more schools than the previous year.",
+      "meaning": "Progress across schools gives us something to build on as we continue the Strive for Less Than 5 work.",
+      "context": "The report still identifies 5,247 chronically absent scholars and a district rate of 40.0%. These figures do not establish the effect of any one intervention.",
+      "source": "Chronic Absenteeism: End of Year Report · 2025–26 · page 1",
+      "reviewed": "2026-10-19"
+    },
+    {
+      "departments": [
+        "Health Services"
+      ],
+      "label": "Health Services",
+      "metric": "90.3% returned to class",
+      "title": "Helping scholars stay in school",
+      "period": "School year 2025–26",
+      "finding": "47,859 of 53,010 recorded dispositions were returns to class.",
+      "meaning": "School health care supports scholars in returning to learning.",
+      "context": "Recorded dispositions, not unique scholars. Uses the district disposition table on printed page 5 (PDF page 8). The summary narrative cites a different denominator.",
+      "source": "GRPS 2025–26 School Health Advocacy Report · printed page 5",
+      "reviewed": "2026-10-19"
+    },
+    {
+      "departments": [
         "Summer School"
       ],
       "label": "Summer School",
@@ -1419,6 +1447,20 @@
       "context": "Shared district outcome; not attributed to one department.",
       "source": "GRPS graduation-rate release · MDE data",
       "href": "https://grps.org/pub/stories/view/grps-graduation-rates-continue-historic-rise",
+      "reviewed": "2026-10-19"
+    },
+    {
+      "departments": [
+        "Social Emotional Learning"
+      ],
+      "label": "Social Emotional Learning · PBIS+",
+      "metric": "8 schools at or above 70%",
+      "title": "Building stronger Tier 1 practices",
+      "period": "School year 2025–26",
+      "finding": "Eight schools reached at least 70% on the Tier 1 Tiered Fidelity Inventory. The report records 27 completed inventories and a 60% average implementation score.",
+      "meaning": "Use the TFI to identify the practices working in schools and the support each PBIS+ team needs next.",
+      "context": "The school table supports eight scores at or above 70%; five are strictly above 70%. This measures implementation fidelity, not scholar outcomes. The report describes associations with attendance, behavior, and climate without establishing causation.",
+      "source": "PBIS+ Installation Update · Tiered Fidelity Inventory Impact Report · pages 1–2",
       "reviewed": "2026-10-19"
     }
   ]
