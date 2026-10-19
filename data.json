@@ -829,28 +829,28 @@
   "leadership": {
     "expectations": [
       [
-        "Bring a recommendation",
-        "Name the decision, show the viable options, recommend a path, and explain the consequence."
+        "Keep scholars at the center",
+        "Be clear about how the work of your department improves the experience of scholars, families, and schools. Use their experience to help us understand what is working and what needs to change."
       ],
       [
-        "Know when to own it",
-        "Make routine decisions within your authority. Do not send work upward just because it is difficult."
+        "Know your work. Know your data.",
+        "Know the priorities, progress, and challenges in your department. Come ready to explain what the data tells us, whose experience may be different, and what we need to pay attention to next."
       ],
       [
-        "Surface risk early",
-        "Tell me early when a commitment, compliance issue, school concern, or cross-team dependency is at risk."
+        "Help us think it through",
+        "When you raise an issue, share what you know, what you have tried, and where you need help. We can work through the next step together. Raise concerns early enough for us to respond."
       ],
       [
-        "Use evidence with discipline",
-        "Separate what we know, what we think, what we did, and what changed. Activity is not impact."
+        "Lead beyond your department",
+        "Understand how your decisions affect other teams. Involve the right people early, work through concerns directly, and take responsibility for the connections your work depends on."
       ],
       [
-        "Work across CSA",
-        "Resolve work directly with peers when you can. Escalate when authority, resources, or material risk require it."
+        "Follow through",
+        "Do what you say you will do. Make sure people know who is responsible and when to expect the next step. If something changes, communicate it. Return to the work and check whether it made a difference."
       ],
       [
-        "Close the loop",
-        "Every commitment has an owner, timing, evidence, and communication back to the people affected."
+        "Build the capacity of your team",
+        "Make expectations clear, provide useful feedback, and create opportunities for people to learn and lead. Document the work so your team can carry it forward with confidence."
       ]
     ],
     "decks": [
@@ -860,7 +860,9 @@
         "summary": "October principal-meeting presentation. Open the slides in SharePoint.",
         "href": "https://grpublicschools-my.sharepoint.com/:p:/g/personal/pierrep_grps_org/IQDgcVief4BzTZz91YOGXxQLARxcWVY6aLrlUWUTTaCJ8sk?e=jCwgXj&CID=16836928-2bf8-35c0-480c-1a2057f07f32",
         "actionMap": [],
-        "access": "SharePoint · GRPS Microsoft 365 access may be required."
+        "access": "SharePoint · GRPS Microsoft 365 access may be required.",
+        "discussionPrompt": "After reviewing the October slides, identify one message our teams need to understand, the CSA work it affects, and any guidance we need to clarify with schools. Bring back the action taken and what still needs attention.",
+        "discussionStatus": "CSA discussion prompt; the slide content has not yet been summarized here."
       },
       {
         "date": "August 3, 2026",
@@ -1414,7 +1416,37 @@
         "access": "Open web brief · CC BY-NC 4.0",
         "href": "https://learningpolicyinstitute.org/product/ousd-community-schools-district-support-brief"
       }
-    ]
+    ],
+    "priorities": [
+      {
+        "title": "Make our high-priority work clear and usable",
+        "focus": "CSA written processes and SOPs",
+        "why": "Staff need to find the process, understand who owns it, and carry out the work consistently.",
+        "next": "Department leaders: identify the work that most needs to be documented or clarified. Start with an existing document or a real example of how the work gets done.",
+        "bringBack": "A usable draft, the person responsible for maintaining it, and any decision needed to move it forward.",
+        "resourceTitle": "SOPs & Written Processes",
+        "href": "https://melatkins2-ops.github.io/grps-written-processes/"
+      },
+      {
+        "title": "Use our data to decide what needs attention",
+        "focus": "Attendance · Health Services · SEL/PBIS+ · Assessment & Evaluation",
+        "why": "Our reports show progress and areas where we need to understand the experience of schools and scholars more clearly.",
+        "next": "Department leaders: bring forward one meaningful result, the context needed to understand it, and the question it raises for our work. Look at implementation alongside outcomes.",
+        "bringBack": "What we learned, what we will do next, and how we will check whether it helped.",
+        "resourceTitle": "Review department data and reports",
+        "href": "#departments"
+      },
+      {
+        "title": "Use the summer findings to shape the next design",
+        "focus": "Summer School · Extended Learning · State & Federal Programs · Assessment & Evaluation",
+        "why": "The summer evaluation should help us make decisions about participation, attendance, learning, and high school credit recovery.",
+        "next": "Review the 2026 draft evaluation alongside the prior evaluation. Identify which findings should inform planning and which questions still need an answer.",
+        "bringBack": "The design decisions the evidence supports, the departments that need to be involved, and what must be resolved before launch.",
+        "resourceTitle": "Open the 2026 draft evaluation",
+        "href": "https://csa-resource-center.melatkins2.chatgpt.site/ignite-summer-program-evaluation-report-2026-draft.pdf"
+      }
+    ],
+    "priorityReviewed": "October 19, 2026"
   },
   "highlights": [
     {
