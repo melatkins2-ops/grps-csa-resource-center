@@ -824,6 +824,22 @@
       "href": "https://melatkins2-ops.github.io/grps-csa-resource-center/forecasting-mtss-grps-july-2025.pdf",
       "restricted": false,
       "report": true
+    },
+    {
+      "title": "Michigan Medicaid Coverage Changes — Fall 2026",
+      "department": "Health Services",
+      "description": "Current guidance for staff supporting scholars and families: October 2026 immigration-related eligibility changes; January 2027 Healthy Michigan Plan work requirements, more frequent renewals, and shorter retroactive coverage. Individual eligibility and exemptions require confirmation with MDHHS. Relevant to Health Services, Community & Student Services, Behavioral Health, Counseling, and Family & Community Engagement. Health Services coordinates updates and nurse referral guidance.",
+      "status": "Current guidance · Health Services owner · Review as MDHHS guidance changes",
+      "href": "https://www.michigan.gov/mdhhs/assistance-programs/medicaid",
+      "restricted": false
+    },
+    {
+      "title": "MI Bridges — Medicaid Notices and Renewals",
+      "department": "Health Services",
+      "description": "Michigan's benefits portal for Medicaid applications, renewals, notices, and account information. Direct families to MDHHS for case-specific eligibility questions.",
+      "status": "Official Michigan benefits portal",
+      "href": "https://www.michigan.gov/mibridges",
+      "restricted": false
     }
   ],
   "leadership": {
