@@ -112,14 +112,14 @@ function renderResources(){
   const row=node('article',null,'resource'),body=node('div'),action=node('div',null,'action');
   body.append(node('span',r.department,'department'),node('h3',r.title),node('p',r.description));
   action.append(link('Open resource ↗︎',r.href));
-  action.append(node('small',r.restricted?'Sign-in or file access required':r.status));
+  action.append(node('small',r.restricted?'ChatGPT sign-in may be required · ask resource owner for district-accessible copy':r.status));
   row.append(body,action);fragment.append(row);
  }
  if(!results.length)fragment.append(node('p','No matching resource. Try fewer words or clear the department filter.','empty'));
  $('resource-list').replaceChildren(fragment);
 }
 function highlightNode(h,compact=false){const row=node('article',null,compact?'department-highlight':'highlight');row.append(node('small',h.label+' · '+h.period),node('strong',h.metric,'positive-metric'),node('h3',h.title),node('p',h.finding),node('p',h.meaning));if(h.href)row.append(link('View source\u00a0↗︎',h.href));const detail=node('details');detail.append(node('summary','Source & context'),node('p',h.source),node('p',h.context),node('small','Source checked '+h.reviewed));row.append(detail);return row;}
-function departmentResource(r){const row=node('article',null,'dept-resource');const a=link(r.title+' ↗︎',r.href);row.append(a,node('p',r.description),node('small',r.restricted?'GRPS sign-in or file access required':r.status));return row;}
+function departmentResource(r){const row=node('article',null,'dept-resource');const a=link(r.title+' ↗︎',r.href);row.append(a,node('p',r.description),node('small',r.restricted?'ChatGPT sign-in may be required · request district-accessible copy':r.status));return row;}
 function renderDepartment(name){
  const d=state.departments.find(x=>x.name===name);if(!d)return;state.department=name;$('department-list').value=name;
  const section=$('department-detail');section.replaceChildren();
