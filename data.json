@@ -369,8 +369,8 @@
     {
       "title": "Suicide Prevention One-Pagers",
       "department": "Behavioral Health",
-      "description": "Use the GRPS C-SSRS reference, risk levels, response guidance, and behavioral-health contacts.",
-      "status": "Current district resource",
+      "description": "Use the GRPS C-SSRS reference, risk levels, response guidance, and behavioral-health contacts. ChatGPT sign-in may be required; request a district-accessible copy from the resource owner.",
+      "status": "Sign-in required · access needs review",
       "href": "https://csa-resource-center.melatkins2.chatgpt.site/suicide-prevention-one-pagers.pdf",
       "restricted": true
     },
@@ -378,7 +378,7 @@
       "title": "GRPS School-Based Mental Health Services",
       "department": "Behavioral Health",
       "description": "See how families can ask for services, what happens before treatment, and whom to contact. Confirm clinician availability with the team.",
-      "status": "Current district resource",
+      "status": "Official GRPS webpage",
       "href": "https://grps.org/departments/school-based-mental-health-services/",
       "restricted": false
     },
@@ -593,8 +593,8 @@
     {
       "title": "GRPS Title I Handbook",
       "department": "State & Federal Programs",
-      "description": "Background reference covering Title I fundamentals, federal-fund spending, family engagement, annual meetings, needs assessment, program implementation and evaluation, and on-site review. Because the handbook was produced in 2022-23, confirm current requirements, forms, deadlines, and procedures before use.",
-      "status": "Historical reference",
+      "description": "Background reference covering Title I fundamentals, federal-fund spending, family engagement, annual meetings, needs assessment, program implementation and evaluation, and on-site review. Because the handbook was produced in 2022-23, confirm current requirements, forms, deadlines, and procedures before use. ChatGPT sign-in may be required; request a district-accessible copy from the resource owner.",
+      "status": "Sign-in required · access needs review",
       "href": "https://csa-resource-center.melatkins2.chatgpt.site/grps-title-i-handbook-2023-reference.pdf",
       "restricted": true
     },
@@ -633,16 +633,16 @@
     {
       "title": "GRPS Title I Game Show",
       "department": "State & Federal Programs",
-      "description": "Use the interactive game to check and strengthen understanding of Title I requirements, decisions, and common misconceptions.",
-      "status": "Working GRPS tool",
+      "description": "Use the interactive game to check and strengthen understanding of Title I requirements, decisions, and common misconceptions. ChatGPT sign-in may be required; request a district-accessible copy from the resource owner.",
+      "status": "Sign-in required · access needs review",
       "href": "https://grps-title-i-game-show.melatkins2.chatgpt.site/",
-      "restricted": false
+      "restricted": true
     },
     {
       "title": "GRPS Title I Learning Modules",
       "department": "State & Federal Programs",
-      "description": "Complete the guided modules for foundational Title I learning, school responsibilities, and application. GRPS sign-in may be required.",
-      "status": "Working GRPS tool",
+      "description": "Complete the guided modules for foundational Title I learning, school responsibilities, and application. GRPS sign-in may be required. ChatGPT sign-in may be required; request a district-accessible copy from the resource owner.",
+      "status": "Sign-in required · access needs review",
       "href": "https://grps-title-i-modules.melatkins2.chatgpt.site/",
       "restricted": true
     },
@@ -713,16 +713,16 @@
     {
       "title": "Ignite Summer Program Evaluation - 2025",
       "department": "Summer School",
-      "description": "Review enrollment, attendance, participant feedback, implementation findings, and planning implications.",
-      "status": "Current district resource",
+      "description": "Review enrollment, attendance, participant feedback, implementation findings, and planning implications. ChatGPT sign-in may be required; request a district-accessible copy from the resource owner.",
+      "status": "Sign-in required · access needs review",
       "href": "https://csa-resource-center.melatkins2.chatgpt.site/ignite-summer-program-evaluation-2025.pdf",
       "restricted": true
     },
     {
       "title": "Ignite Summer Program Draft Evaluation Report - 2026",
       "department": "Summer School",
-      "description": "Review the under-review findings on enrollment, attendance, access and equity, stakeholder feedback, academic outcomes, high-school credits, implementation, and Summer 2027 recommendations.",
-      "status": "Under review",
+      "description": "Review the under-review findings on enrollment, attendance, access and equity, stakeholder feedback, academic outcomes, high-school credits, implementation, and Summer 2027 recommendations. ChatGPT sign-in may be required; request a district-accessible copy from the resource owner.",
+      "status": "Sign-in required · access needs review",
       "href": "https://csa-resource-center.melatkins2.chatgpt.site/ignite-summer-program-evaluation-report-2026-draft.pdf",
       "restricted": true
     },
