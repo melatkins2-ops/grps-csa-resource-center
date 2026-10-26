@@ -633,10 +633,10 @@
     {
       "title": "GRPS Title I Game Show",
       "department": "State & Federal Programs",
-      "description": "Use the interactive game to check and strengthen understanding of Title I requirements, decisions, and common misconceptions. ChatGPT sign-in may be required; request a district-accessible copy from the resource owner.",
-      "status": "Sign-in required · access needs review",
-      "href": "https://grps-title-i-game-show.melatkins2.chatgpt.site/",
-      "restricted": true
+      "description": "Use the interactive game to check and strengthen understanding of Title I requirements, decisions, and common misconceptions.",
+      "status": "Hosted in CSA GitHub Pages",
+      "href": "./title-i-game-show/",
+      "restricted": false
     },
     {
       "title": "GRPS Title I Learning Modules",
