@@ -102,7 +102,7 @@ function showView(){
 }
 window.addEventListener('hashchange',showView);
 function node(tag,text,className){const n=document.createElement(tag);if(text)n.textContent=text;if(className)n.className=className;return n;}
-function link(text,href,className){const a=node('a',text,className);a.href=href;a.target='_blank';a.rel='noopener noreferrer';return a;}
+function link(text,href,className){if(/\.chatgpt\.site(?:\/|$)/i.test(href||'')){const note=node('span','District-accessible copy needed',className);note.setAttribute('role','status');note.title='This link opens a ChatGPT sign-in page. Ask the resource owner for a district-accessible version.';return note;}const a=node('a',text,className);a.href=href;a.target='_blank';a.rel='noopener noreferrer';return a;}
 function renderResources(){
  const query=$('search').value,department=$('department').value;
  const results=state.resources.filter(r=>(!department||r.department===department)&&matches([r.title,r.department,r.description,r.status].join(' '),query));
