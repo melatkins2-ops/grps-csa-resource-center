@@ -369,10 +369,10 @@
     {
       "title": "Suicide Prevention One-Pagers",
       "department": "Behavioral Health",
-      "description": "Use the GRPS C-SSRS reference, risk levels, response guidance, and behavioral-health contacts. ChatGPT sign-in may be required; request a district-accessible copy from the resource owner.",
-      "status": "Sign-in required · access needs review",
-      "href": "https://csa-resource-center.melatkins2.chatgpt.site/suicide-prevention-one-pagers.pdf",
-      "restricted": true
+      "description": "Use the GRPS C-SSRS reference, risk levels, response guidance, and behavioral-health contacts.",
+      "status": "Google Drive source · access may require GRPS sign-in",
+      "href": "https://drive.google.com/file/d/1F0ajLfeib2u27X-wA0ZCF3UZhnpGFUKK/view",
+      "restricted": false
     },
     {
       "title": "GRPS School-Based Mental Health Services",
@@ -593,10 +593,10 @@
     {
       "title": "GRPS Title I Handbook",
       "department": "State & Federal Programs",
-      "description": "Background reference covering Title I fundamentals, federal-fund spending, family engagement, annual meetings, needs assessment, program implementation and evaluation, and on-site review. Because the handbook was produced in 2022-23, confirm current requirements, forms, deadlines, and procedures before use. ChatGPT sign-in may be required; request a district-accessible copy from the resource owner.",
-      "status": "Sign-in required · access needs review",
-      "href": "https://csa-resource-center.melatkins2.chatgpt.site/grps-title-i-handbook-2023-reference.pdf",
-      "restricted": true
+      "description": "Background reference covering Title I fundamentals, federal-fund spending, family engagement, annual meetings, needs assessment, program implementation and evaluation, and on-site review. Because the handbook was produced in 2022-23, confirm current requirements, forms, deadlines, and procedures before use.",
+      "status": "Historical reference · Google Drive",
+      "href": "https://drive.google.com/file/d/1zQVrHxNzRIKlKtikZaqPfr09hfYMyP2L/view",
+      "restricted": false
     },
     {
       "title": "Strive for Less Than 5 Playbook",
@@ -713,10 +713,10 @@
     {
       "title": "Ignite Summer Program Evaluation - 2025",
       "department": "Summer School",
-      "description": "Review enrollment, attendance, participant feedback, implementation findings, and planning implications. ChatGPT sign-in may be required; request a district-accessible copy from the resource owner.",
-      "status": "Sign-in required · access needs review",
-      "href": "https://csa-resource-center.melatkins2.chatgpt.site/ignite-summer-program-evaluation-2025.pdf",
-      "restricted": true
+      "description": "Review enrollment, attendance, participant feedback, implementation findings, and planning implications.",
+      "status": "Google Drive source · access may require GRPS sign-in",
+      "href": "https://drive.google.com/file/d/1IeZzu7U8szDxtTozKCll8r3h_3cH1gFd/view",
+      "restricted": false
     },
     {
       "title": "Ignite Summer Program Draft Evaluation Report - 2026",
