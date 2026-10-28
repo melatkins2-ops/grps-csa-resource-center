@@ -208,7 +208,7 @@ function renderSpotlight(){
 }
 function initLeadership(data){state.leadership=data;initLeadershipConnections(data);for(const b of document.querySelectorAll('[data-leadership]'))b.addEventListener('click',()=>{const tab=b.getAttribute('data-leadership');showLeadership(tab);location.hash='leadership/'+tab;});for(const [title,text] of data.expectations){const row=node('article',null,'expectation-row');row.append(node('h4',title),node('p',text));$('expectation-list').append(row);}for(const deck of data.decks){const row=node('article',null,'deck-row');row.append(node('h4',deck.title),node('p',deck.summary),link('Open presentation\u00a0↗︎',deck.href,'document-link'));if(deck.access)row.append(node('p',deck.access));if(deck.discussionPrompt){row.append(node('h4','Bring the learning into CSA'),node('p',deck.discussionPrompt),node('small',deck.discussionStatus));}const details=node('div',null,'presentation-actions');details.append(node('h4','What this means for CSA'));for(const item of deck.actionMap||[]){details.append(node('h4',item.topic),node('small',item.teams),node('p',item.action));}if(deck.followThrough)details.append(node('h4','Bring back to the team'),node('p',deck.followThrough));if(deck.actionMap?.length)row.append(details);$('presentation-list').append(row);}for(const topic of [...new Set(data.cases.map(c=>c.topic))]){const o=node('option',topic);o.value=topic;$('case-topic').append(o);}for(const c of data.cases){const o=node('option',c.title);o.value=c.id;$('guide-case').append(o);}for(const id of ['case-search','case-topic','case-level'])$(id).addEventListener(id==='case-search'?'input':'change',renderCases);$('case-reset').addEventListener('click',()=>{for(const id of ['case-search','case-topic','case-level'])$(id).value='';renderCases();});$('guide-case').addEventListener('change',renderGuide);$('copy-guide').addEventListener('click',async()=>{const text=guideText();try{await navigator.clipboard.writeText(text);$('guide-copy-status').textContent='Facilitator guide copied.';}catch{$('guide-fallback').value=text;$('guide-fallback').hidden=false;$('guide-fallback').focus();$('guide-fallback').select();$('guide-copy-status').textContent='Select and copy the guide below.';}});renderCases();renderGuide();showLeadership('expectations');}
 
-fetch('./data.json?v=20261028-toolkit-access',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('Resource loading failed');return r.json();}).catch(()=>JSON.parse(document.getElementById('embedded-resource-data').textContent)).then(start).catch(()=>{$('load-error').hidden=false;$('result-count').textContent='Resource directory unavailable';});
+fetch('./data.json?v=20261028-remove-learning-modules',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('Resource loading failed');return r.json();}).catch(()=>JSON.parse(document.getElementById('embedded-resource-data').textContent)).then(start).catch(()=>{$('load-error').hidden=false;$('result-count').textContent='Resource directory unavailable';});
 </script>
 <script type="application/json" id="embedded-resource-data">{
   "departments": [
@@ -850,14 +850,7 @@ fetch('./data.json?v=20261028-toolkit-access',{cache:'no-store'}).then(r=>{if(!r
       "href": "./title-i-game-show/",
       "restricted": false
     },
-    {
-      "title": "GRPS Title I Learning Modules",
-      "department": "State & Federal Programs",
-      "description": "Complete the guided modules for foundational Title I learning, school responsibilities, and application. GRPS sign-in may be required.",
-      "status": "Working GRPS tool",
-      "href": "https://grps-title-i-modules.melatkins2.chatgpt.site/",
-      "restricted": true
-    },
+
     {
       "title": "Title I NOW",
       "department": "State & Federal Programs",
