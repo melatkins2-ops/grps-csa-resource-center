@@ -41,6 +41,12 @@
 #department-detail .dept-panel .dept-resource-group+.dept-resource-group{border-top:2px solid #d5ded8;padding-top:16px;margin-top:20px}
 #department-detail .dept-panel .dept-resource{border-bottom:1px solid #d7dedc}
 @media(max-width:700px){#department-detail .dept-panel{padding:24px 19px 28px;margin-bottom:20px;border-left-width:5px}#department-detail .dept-panel h4{font-size:23px;gap:11px}#department-detail .dept-panel h4::before{width:38px;height:38px;flex-basis:38px;font-size:17px}}
+
+/* Prevent scrolling department content from colliding with the site masthead. */
+body > header{position:relative;top:auto;z-index:5}
+body > header .brand{flex-shrink:0}
+#department-detail .department-hero{position:relative;z-index:0}
+#department-detail .dept-panel{scroll-margin-top:24px}
 </style>
 </head>
 <body id="top">
