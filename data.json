@@ -639,14 +639,6 @@
       "restricted": false
     },
     {
-      "title": "GRPS Title I Learning Modules",
-      "department": "State & Federal Programs",
-      "description": "Complete the guided modules for foundational Title I learning, school responsibilities, and application. GRPS sign-in may be required. ChatGPT sign-in may be required; request a district-accessible copy from the resource owner.",
-      "status": "Sign-in required · access needs review",
-      "href": "https://grps-title-i-modules.melatkins2.chatgpt.site/",
-      "restricted": true
-    },
-    {
       "title": "Title I NOW",
       "department": "State & Federal Programs",
       "description": "See the current Title I priorities, required actions, toolkit links, and near-term roadmap.",
