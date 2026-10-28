@@ -28,6 +28,7 @@
 /* Keep the network motto outside the Families node on tablet and desktop */
 @media(min-width:741px){.home-network{overflow:visible}.network-motto{top:auto;bottom:0;right:0;transform:translateY(95%);background:#fff;padding:3px 8px;text-align:right;line-height:1.3;font-size:11px;z-index:1}.home-hero{padding-bottom:58px}}
 @media(max-width:740px){.network-motto{position:static;display:block;width:max-content;max-width:100%;margin:0 0 8px auto;padding:4px 8px;text-align:right;background:#fff;font-size:11px;line-height:1.4}.home-network{overflow:visible}}
+.dept-jump{display:flex;flex-wrap:wrap;gap:12px;border-bottom:1px solid var(--line);padding:14px 0 20px;margin:0 0 18px}.dept-jump a{font-size:17px;font-weight:700;text-decoration:none;border-bottom:2px solid var(--orange);padding:9px 2px;min-height:44px}.dept-panel{max-width:920px;padding:22px 0 26px;border-bottom:1px solid var(--line);scroll-margin-top:90px}.dept-panel h4{font-size:25px;margin:0 0 15px}.dept-panel h5{font-size:19px;margin:17px 0 8px}.dept-panel li,.dept-panel p{font-size:18px;line-height:1.6}.dept-panel li{margin:0 0 10px}.dept-resource-group{margin:0 0 22px}.dept-resource-group .dept-resource{padding:12px 0}.dept-panel details>summary{font-size:18px;font-weight:700;cursor:pointer;padding:12px 0}.dept-panel .department-highlight{padding:18px 0;border-bottom:1px solid var(--line)}@media(max-width:700px){.dept-panel h4{font-size:23px}.dept-panel li,.dept-panel p{font-size:17px}.dept-jump{gap:16px}}
 </style>
 </head>
 <body id="top">
@@ -123,23 +124,29 @@ function departmentResource(r){const row=node('article',null,'dept-resource');co
 function renderDepartment(name){
  const d=state.departments.find(x=>x.name===name);if(!d)return;state.department=name;$('department-list').value=name;
  const section=$('department-detail');section.replaceChildren();
- const hero=node('div',null,'department-hero');hero.append(node('h3',d.name),node('p',d.purpose));section.append(hero);
- const responsibilities=node('div',null,'department-responsibilities');
- for(const [heading,items] of [['What we lead',d.owns],['When to involve us',d.when]]){const block=node('section'),list=node('ul');block.append(node('h4',heading));for(const text of items||[])list.append(node('li',text));block.append(list);responsibilities.append(block);}section.append(responsibilities);
- const body=node('div',null,'department-body'),main=node('section',null,'department-resources'),aside=node('aside',null,'department-evidence');
- const resources=state.resources.filter(r=>r.department===name),reports=resources.filter(r=>r.report),tools=resources.filter(r=>!r.report),ordered=[...reports,...tools];
- main.append(node('h4','Resources for this work'),node('p','Open a report, tool, or guide directly.','resource-intro'));
- for(const r of ordered.slice(0,4))main.append(departmentResource(r));
- if(ordered.length>4){const more=node('details',null,'more-dept-resources');more.append(node('summary','More '+name+' resources ('+(ordered.length-4)+')'));for(const r of ordered.slice(4))more.append(departmentResource(r));main.append(more);}
- if(!ordered.length)main.append(node('p','No resources are currently listed for this department.'));
+ const hero=node('header',null,'department-hero');hero.append(node('h3',d.name),node('p',d.purpose));section.append(hero);
+ const resources=state.resources.filter(r=>r.department===name),reports=resources.filter(r=>r.report),tools=resources.filter(r=>!r.report);
+ const nav=node('nav',null,'dept-jump');nav.setAttribute('aria-label','On this department page');
+ const areas=[['dept-about','Our work'],['dept-support','Working with us'],['dept-tools','Resources']];
+ for(const [id,label] of areas){const a=node('a',label);a.href='#'+id;nav.append(a);}section.append(nav);
+ const about=node('section',null,'dept-panel');about.id='dept-about';about.append(node('h4','Our work'));
+ const leads=node('div',null,'dept-focus');const list=node('ul');
+ for(const item of d.owns||[])list.append(node('li',item));leads.append(list);about.append(leads);section.append(about);
+ const support=node('section',null,'dept-panel');support.id='dept-support';support.append(node('h4','Working with us'));
+ if(d.when?.length){support.append(node('h5','When to involve this department'));const ul=node('ul');for(const item of d.when)ul.append(node('li',item));support.append(ul);}
+ if(d.connects?.length){support.append(node('h5','Where the work connects'),node('p',d.connects.join(' · ')));}
+ if(d.needs?.length){const details=node('details');details.append(node('summary','What helps move the work forward'));const ul=node('ul');for(const item of d.needs)ul.append(node('li',item));details.append(ul);support.append(details);}
+ section.append(support);
+ const library=node('section',null,'dept-panel');library.id='dept-tools';library.append(node('h4','Resources and guidance'));
+ const resourceGroup=(title,items)=>{if(!items.length)return;const group=node('div',null,'dept-resource-group');group.append(node('h5',title));for(const item of items)group.append(departmentResource(item));library.append(group);};
+ resourceGroup('Tools and guidance',tools.slice(0,5));resourceGroup('Reports and evidence',reports.slice(0,3));
+ const extras=[...tools.slice(5),...reports.slice(3)];if(extras.length){const more=node('details',null,'more-dept-resources');more.append(node('summary','View '+extras.length+' additional resources'));for(const item of extras)more.append(departmentResource(item));library.append(more);}
+ if(!resources.length)library.append(node('p','No resources are currently listed for this department.'));
+ section.append(library);
  const positives=(state.highlights||[]).filter(h=>h.departments.includes(name));
- if(positives.length)aside.append(node('h4','Progress to build on'));
- for(const h of positives){const row=node('article',null,'department-highlight');row.append(node('small',h.period),node('strong',h.metric,'positive-metric'),node('p',h.finding));const detail=node('details');detail.append(node('summary','Read the context'),node('p',h.meaning),node('p',h.source),node('p',h.context),node('small','Source checked '+h.reviewed));if(h.href)detail.append(link('Open source report ↗︎',h.href));row.append(detail);aside.append(row);}
- const connections=node('section',null,'department-connections');connections.append(node('h4','Where our work connects'));
- if(d.connects?.length)connections.append(node('p',d.connects.join(' · ')));
- if(d.needs?.length){const list=node('ul');connections.append(node('h5','What helps us move the work'));for(const text of d.needs)list.append(node('li',text));connections.append(list);}aside.append(connections);
- body.append(main,aside);section.append(body);
+ if(positives.length){const evidence=node('section',null,'dept-panel dept-evidence');evidence.append(node('h4','Progress to build on'));for(const h of positives){const row=node('article',null,'department-highlight');row.append(node('small',h.period),node('strong',h.metric,'positive-metric'),node('p',h.finding));const details=node('details');details.append(node('summary','Read the context'),node('p',h.meaning),node('p',h.source),node('p',h.context),node('small','Source checked '+h.reviewed));if(h.href)details.append(link('Open source report',h.href));row.append(details);evidence.append(row);}section.append(evidence);}
 }
+
 function start(data){
  state.departments=data.departments;state.resources=data.resources;state.highlights=data.highlights||[];
  for(const name of [...data.departments.map(d=>d.name),'Across CSA']){
