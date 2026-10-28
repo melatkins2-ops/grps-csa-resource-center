@@ -138,7 +138,7 @@ function renderResources(){
  $('resource-list').replaceChildren(fragment);
 }
 function highlightNode(h,compact=false){const row=node('article',null,compact?'department-highlight':'highlight');row.append(node('small',h.label+' · '+h.period),node('strong',h.metric,'positive-metric'),node('h3',h.title),node('p',h.finding),node('p',h.meaning));if(h.href)row.append(link('View source\u00a0↗︎',h.href));const detail=node('details');detail.append(node('summary','Source & context'),node('p',h.source),node('p',h.context),node('small','Source checked '+h.reviewed));row.append(detail);return row;}
-function departmentResource(r){const row=node('article',null,'dept-resource');const a=link(r.title+' ↗︎',r.href);row.append(a,node('p',r.description),node('small',(/\\.chatgpt\\.site(?:\\/|$)/i.test(r.href||'')?'ChatGPT-hosted resource · access needs review':r.restricted?'Access may require GRPS permissions':r.status)));return row;}
+function departmentResource(r){const row=node('article',null,'dept-resource');const a=link(r.title+' ↗︎',r.href);const access=(r.href||'').includes('.chatgpt.site')?'ChatGPT-hosted resource · access needs review':r.restricted?'Access may require GRPS permissions':r.status;row.append(a,node('p',r.description),node('small',access));return row;}
 function renderDepartment(name){
  const d=state.departments.find(x=>x.name===name);if(!d)return;state.department=name;$('department-list').value=name;
  const section=$('department-detail');section.replaceChildren();
