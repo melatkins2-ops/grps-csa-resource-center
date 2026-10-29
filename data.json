@@ -1337,61 +1337,6 @@
         "access": "GRPS Google Drive case study"
       },
       {
-        "id": "HBS-01",
-        "title": "Taran Swan at Nickelodeon Latin America (A)",
-        "topic": "People & Leadership",
-        "pages": 25,
-        "difficulty": "Intermediate",
-        "connection": "Examine team culture, influence, execution, and leadership under pressure in a setting outside education.",
-        "source": "Harvard Business Publishing",
-        "access": "Purchase one licensed copy per participant",
-        "href": "https://store.hbr.org/product/taran-swan-at-nickelodeon-latin-america-a/400036"
-      },
-      {
-        "id": "HBS-02",
-        "title": "Federal Bureau of Investigation, 2001",
-        "topic": "Strategy & Change",
-        "pages": 14,
-        "difficulty": "Advanced",
-        "connection": "Examine organizational identity, competing missions, culture, resources, and large-scale change after 9/11.",
-        "source": "Harvard Business Publishing",
-        "access": "Purchase one licensed copy per participant",
-        "href": "https://store.hbr.org/product/federal-bureau-of-investigation-2001-abridged/710450"
-      },
-      {
-        "id": "HKS-1673",
-        "title": "The Challenge of Multi-Agency Collaboration: Launching a Large-Scale Youth Development Project in Hartford",
-        "topic": "Systems & Scale",
-        "pages": 42,
-        "difficulty": "Advanced",
-        "connection": "Study what breaks down when schools, government, funders, and service providers move from a shared proposal to implementation—directly relevant to CSA partnership and handoff work.",
-        "source": "Harvard Kennedy School",
-        "access": "Purchase per participant · teaching plan with Educator Access",
-        "href": "https://case.hks.harvard.edu/the-challenge-of-multi-agency-collaboration-launching-a-large-scale-youth-development-project-in-hartford/"
-      },
-      {
-        "id": "HKS-1957",
-        "title": "Michelle Rhee and the Washington, D.C. Public Schools",
-        "topic": "Strategy & Change",
-        "pages": 28,
-        "difficulty": "Advanced",
-        "connection": "Examine urgency, stakeholder trust, accountability, labor relations, and the consequences of a leader’s change strategy.",
-        "source": "Harvard Kennedy School",
-        "access": "Purchase per participant · teaching plan with Educator Access",
-        "href": "https://case.hks.harvard.edu/michelle-rhee-and-the-washington-d-c-public-schools/"
-      },
-      {
-        "id": "HKS-2196",
-        "title": "Pratham: The Challenge of Converting Schooling to Learning in India",
-        "topic": "Data & Equity",
-        "pages": 7,
-        "difficulty": "Intermediate",
-        "connection": "Explore how evidence, intervention design, government partnership, and scale come together around a persistent learning problem.",
-        "source": "Harvard Kennedy School",
-        "access": "Purchase per participant · multimedia · teaching plan with Educator Access",
-        "href": "https://case.hks.harvard.edu/pratham-the-challenge-of-converting-schooling-to-learning-in-india/"
-      },
-      {
         "id": "HKS-2128",
         "title": "Mothers of Rotterdam: Scaling a Social Services Program in the Netherlands",
         "topic": "Systems & Scale",
