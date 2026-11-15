@@ -10,6 +10,12 @@ Edit `index.html` for layout and behavior, and `data.json` for resources, depart
 
 Run `node verify.mjs` to check resource navigation, filters, case-to-guide selection, Leadership content, and duplicate-hub exclusions. After changing the data, update the data-request version in `index.html` to avoid a stale cached resource list.
 
+## Leadership Team tracker
+
+Leadership > Priorities & follow-through links to the CSA Leadership Team Tracker Google Sheet (Overview, Priorities, Decisions & Actions, Resource Review). The sheet requires a GRPS Google account with access; it holds no scholar or family information.
+
+Resource entries in `data.json` accept optional `owner` and `reviewed` (YYYY-MM-DD) fields. When `reviewed` is set, the resource shows "Reviewed Mon YYYY", or "Review due" after 12 months. Copy these from the sheet's Resource Review tab, update both `data.json` and the embedded copy in `index.html`, and bump the data-request version.
+
 ## Document access
 
 Document links open the individual file at its existing Google Drive, document host, or publisher location. Only three reports reviewed for public sharing are included: the 2025–26 attendance report, the TFI report, and the July 2025 MTSS planning document with user-approved cover photos. The full Health Advocacy report is excluded because school-level small medical counts could identify scholars. Supplied case PDFs, licensed readings, draft evaluations, and Word documents remain at their existing locations. Existing file access and publisher terms still apply. The hub no longer sends staff to a second CSA homepage to find Leadership content.
