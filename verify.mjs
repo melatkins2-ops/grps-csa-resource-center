@@ -34,7 +34,7 @@ assert.equal(run("$('resource-list').children[0].children.length"),data.resource
 run("renderDepartment('Summer School');");
 assert.equal(run('state.department'),'Summer School');
 const counts=new Set(data.resources.map(x=>x.href));assert.equal(counts.size,data.resources.length);
-for(const r of data.resources){assert.match(r.href,/^https:\/\//);assert.ok(r.title&&r.department);}
+for(const r of data.resources){if(/^https:\/\//.test(r.href)){}else{assert.match(r.href,/^\.\//,`Unexpected link: ${r.href}`);const local=new URL(r.href.endsWith('/')?r.href+'index.html':r.href,import.meta.url);assert.ok(fs.existsSync(local),`Missing local file: ${r.href}`);}assert.ok(r.title&&r.department);}
 for(const removed of ['CSS Connect','PBIS Celebration Help','Parent University Courses','GRPS ENDS Dashboard'])assert.ok(!data.resources.some(x=>x.title===removed));
 assert.ok(!data.resources.some(x=>x.href==='https://grps.org/'));
 assert.ok(html.includes('src="data:image/png;base64,'));
@@ -53,13 +53,13 @@ for(const name of approvedReports)assert.equal(fs.readFileSync(new URL('./'+name
 console.log('PASS: 10 department profiles, '+data.resources.length+' unique links, resource search, filters, reset, department selection, and protected-file exclusions.');
 assert.equal(data.leadership.expectations.length,6);
 assert.equal(data.leadership.decks.length,3);
-assert.equal(data.leadership.cases.length,47);
-assert.equal(run("$('case-list').children.length"),47);
-run("$('case-search').value='Federal Bureau';renderCases();");
+assert.equal(data.leadership.cases.length,40);
+assert.equal(run("$('case-list').children.length"),40);
+run("$('case-search').value='Compensation Reform';renderCases();");
 assert.equal(run("$('case-list').children.length"),1);
-assert.match(run("$('case-list').children[0].children[0].children[1].textContent"),/Federal Bureau/);
+assert.match(run("$('case-list').children[0].children[0].children[1].textContent"),/Compensation Reform/);
 run("$('case-reset').events.click();$('case-topic').value='Family Engagement';renderCases();");
-assert.ok(run("$('case-list').children.length")>=4);
+assert.ok(run("$('case-list').children.length")>=3);
 run("$('case-list').children[0].children[1].children[1].events.click();");
 assert.equal(run("$('lead-facilitation').hidden"),false);
 assert.match(run('guideText()'),/DECISION TO FRAME/);
@@ -67,7 +67,7 @@ assert.match(run('guideText()'),/55–60/);
 assert.ok(!html.includes('Open internal CSA hub')&&!html.includes('Open the internal CSA hub'));
 assert.ok(!data.resources.some(r=>r.href==='https://csa-resource-center.melatkins2.chatgpt.site'));
 for(const c of data.leadership.cases){assert.match(c.href,/^https:\/\//);assert.ok(c.title&&c.access);}
-console.log('PASS: 47 case entries, topic and title filters, case-to-guide selection, full facilitator run sheet, 6 expectations, 3 decks, and no duplicate hub links.');
+console.log('PASS: 40 case entries, topic and title filters, case-to-guide selection, full facilitator run sheet, 6 expectations, 3 decks, and no duplicate hub links.');
 
 assert.equal(data.leadership.decks[0].date,'October 2026');
 assert.match(data.leadership.decks[0].href,/^https:\/\/grpublicschools-my\.sharepoint\.com\//);
@@ -83,7 +83,7 @@ assert.equal(data.highlights[0].metric,'436 fewer scholars');
 assert.ok(data.resources.some(r=>r.title.includes('Chronic Absenteeism: End of Year Report')&&r.report));
 
 assert.equal(data.resources.filter(r=>r.report).length,3);
-for(const name of ["State & Federal Programs","Social Emotional Learning"]){run("renderDepartment("+JSON.stringify(name)+");");assert.ok(run("descendants($('department-detail')).some(x=>x.textContent==='Resources for this work')"));}
+for(const name of ["State & Federal Programs","Social Emotional Learning"]){run("renderDepartment("+JSON.stringify(name)+");");assert.ok(run("descendants($('department-detail')).some(x=>x.textContent==='Resources and guidance')"));}
 // Leadership connections: panels, real department data, and direct resource paths.
 assert.equal(data.leadership.priorities.length,3);
 assert.equal(run("$('priority-list').children.length"),3);
